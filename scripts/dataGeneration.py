@@ -30,7 +30,7 @@ class Proveedores:
         cursor = coon.cursor()
         querySQL = open('C:/Users/siste/OneDrive/Imágenes/DesarrollosSistemasWilmer/SendMail/SendEmailAutomatic/scripts/query/Iventory.sql')
         cursor.execute(str(querySQL.read().format(self.house, self.cellars)))
-        return cursor
+        return cursor.fetchall()
     
     def transformData(self):
         nameRows =[
@@ -64,7 +64,7 @@ class Proveedores:
         'CodigoBarras']
         
         data = pd.array(self.triggersQuery())
-        Data_2 = pd.DataFrame(self.triggersQuery())
+        Data_2 = pd.DataFrame(self.triggersQuery(), columns= nameRows )
         wb = openpyxl.Workbook()
         hoja = wb.active
         hoja.append(nameRows)
@@ -73,7 +73,10 @@ class Proveedores:
         
         hoja['R{}'.format(len(data)+2)] = Data_2['TotalUltimoPrecioCompra'].sum()
         
-        wb.save('Inventario {}.xlsx'.format(self.nameHouse))
+        wb.save(self.nameArchivo())
+
+    def nameArchivo(self):
+        return 'Iventario {}.xlsx'.format(self.nameHouse)
 
         
 valor = Proveedores('144','kimberly','006,030','wilmer3428@gmail.com','gelvezCucuta')

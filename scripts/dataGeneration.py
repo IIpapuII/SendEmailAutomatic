@@ -26,6 +26,27 @@ class Proveedores:
         self.emailProveedor = emailProveedor
         self.sheme = scheme
     
+    #Getters del objeto proveedor
+    @property
+    def house(self):
+        return self.house
+    
+    @property
+    def nameHouse(self):
+        return self.nameHouse
+    
+    @property
+    def cellars(self):
+        return self.cellars
+    
+    @property
+    def emailProveedor(self):
+        return self.emailProveedor
+    
+    @property
+    def schema(self):
+        return self.sheme
+
     def triggersQuery(self):
         cursor = coon.cursor()
         querySQL = open('C:/Users/siste/OneDrive/Imágenes/DesarrollosSistemasWilmer/SendMail/SendEmailAutomatic/scripts/query/Iventory.sql')
@@ -78,7 +99,4 @@ class Proveedores:
     def nameArchivo(self):
         return 'Iventario {}.xlsx'.format(self.nameHouse)
 
-        
-valor = Proveedores('144','kimberly','006,030','wilmer3428@gmail.com','gelvezCucuta')
-valor.transformData()
     

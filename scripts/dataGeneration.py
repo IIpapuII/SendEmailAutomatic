@@ -29,7 +29,7 @@ class Proveedores:
     def triggersQuery(self):
         cursor = coon.cursor()
         querySQL = open('C:/Users/siste/OneDrive/Imágenes/DesarrollosSistemasWilmer/SendMail/SendEmailAutomatic/scripts/query/Iventory.sql')
-        cursor.execute(str(querySQL.read().format(self.house, self.cellers)))
+        cursor.execute(str(querySQL.read().format(self.house, self.cellars)))
         return cursor
     
     def transformData(self):
@@ -74,8 +74,8 @@ class Proveedores:
         hoja['R{}'.format(len(data)+2)] = Data_2['TotalUltimoPrecioCompra'].sum()
         
         wb.save('Inventario {}.xlsx'.format(self.nameHouse))
-        
-        
 
-
+        
+valor = Proveedores('144','kimberly','006,030','wilmer3428@gmail.com','gelvezCucuta')
+valor.transformData()
     

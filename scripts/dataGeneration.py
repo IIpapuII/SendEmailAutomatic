@@ -26,7 +26,7 @@ class Proveedores:
         self.emailProveedor = emailProveedor
         self.sheme = scheme
     
-    #Getters del objeto proveedor
+    """ #Getters del objeto proveedor
     @property
     def house(self):
         return self.house
@@ -45,7 +45,7 @@ class Proveedores:
     
     @property
     def schema(self):
-        return self.sheme
+        return self.sheme """
 
     def triggersQuery(self):
         cursor = coon.cursor()

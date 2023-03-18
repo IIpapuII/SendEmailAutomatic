@@ -20,9 +20,9 @@ SELECT
 	(SUM(T2A."InQty" - T2A."OutQty") * T2."AvgPrice") AS "TotalCostoPromedio",
 	(SUM(T2A."InQty" - T2A."OutQty") * T1."LastPurPrc") AS "TotalUltimoPrecioCompra",
 	--TO_VARCHAR(T1."LastPurDat", 'YYYY-MM-DD') AS "UltimaFechaCompra",
-	TO_VARCHAR((SELECT MAX(TA."DocDate") FROM HBTGELVEZ_CUCUTA."OPCH" TA INNER JOIN HBTGELVEZ_CUCUTA."PCH1" TB ON TA."DocEntry" = TB."DocEntry" WHERE TB."ItemCode" = T1."ItemCode" AND TB."WhsCode" = T6."WhsCode"), 'YYYY-MM-DD') AS "UltimaFechaCompra",
+	TO_VARCHAR((SELECT MAX(TA."DocDate") FROM {2}."OPCH" TA INNER JOIN {2}."PCH1" TB ON TA."DocEntry" = TB."DocEntry" WHERE TB."ItemCode" = T1."ItemCode" AND TB."WhsCode" = T6."WhsCode"), 'YYYY-MM-DD') AS "UltimaFechaCompra",
 	--TO_VARCHAR(MAX(T2A."DocDate"), 'YYYY-MM-DD') AS "UltimaFechaVenta",
-	TO_VARCHAR((SELECT MAX(TA."DocDate") FROM HBTGELVEZ_CUCUTA."OINV" TA INNER JOIN HBTGELVEZ_CUCUTA."INV1" TB ON TA."DocEntry" = TB."DocEntry" WHERE TB."ItemCode" = T1."ItemCode" AND TB."WhsCode" = T6."WhsCode"), 'YYYY-MM-DD') AS "UltimaFechaVenta",
+	TO_VARCHAR((SELECT MAX(TA."DocDate") FROM {2}."OINV" TA INNER JOIN {2}."INV1" TB ON TA."DocEntry" = TB."DocEntry" WHERE TB."ItemCode" = T1."ItemCode" AND TB."WhsCode" = T6."WhsCode"), 'YYYY-MM-DD') AS "UltimaFechaVenta",
 	T1."TaxCodeAP" AS "IVACompra",
 	T7."Name" AS "IVACompra Nombre",
 	T1."TaxCodeAR" AS "IVAVenta",
@@ -36,33 +36,33 @@ SELECT
 		WHEN T2."Locked" = 'Y' THEN 'Bloqueado'
 		ElSE 'Desbloqueado'
 	END AS "EstadoAlmacen",
-	(SELECT STRING_AGG(TA."BcdCode",',' ORDER BY TA."BcdCode") FROM HBTGELVEZ_CUCUTA."OBCD" TA WHERE TA."ItemCode" = T1."ItemCode" AND TA."BcdCode" <> T1."CodeBars") AS "CodigosBarras"
+	(SELECT STRING_AGG(TA."BcdCode",',' ORDER BY TA."BcdCode") FROM {2}."OBCD" TA WHERE TA."ItemCode" = T1."ItemCode" AND TA."BcdCode" <> T1."CodeBars") AS "CodigosBarras"
 FROM
-	"HBTGELVEZ_CUCUTA"."OITM" T1
+	{2}."OITM" T1
 INNER JOIN
-	"HBTGELVEZ_CUCUTA"."OITW" T2
+	{2}."OITW" T2
 		ON T1."ItemCode" = T2."ItemCode"
 INNER JOIN
-	"HBTGELVEZ_CUCUTA"."OINM" T2A
+	{2}."OINM" T2A
 		ON T1."ItemCode" = T2A."ItemCode"
 		AND T2."WhsCode" = T2A."Warehouse"
 INNER JOIN
-	"HBTGELVEZ_CUCUTA"."OITB" T3
+	{2}."OITB" T3
 		ON T1."ItmsGrpCod" = T3."ItmsGrpCod"
 LEFT JOIN
-	"HBTGELVEZ_CUCUTA"."@GD_SUBGRUPO" T4
+	{2}."@GD_SUBGRUPO" T4
 		ON T1."U_GD_SubGrupo" = T4."Code"
 LEFT JOIN
-	"HBTGELVEZ_CUCUTA"."@GD_FAMPRODUCTOS" T5
+	{2}."@GD_FAMPRODUCTOS" T5
 		ON T1."U_GD_FamProducto" = T5."Code"
 INNER JOIN
-	"HBTGELVEZ_CUCUTA"."OWHS" T6
+	{2}."OWHS" T6
 		ON T2A."Warehouse" = T6."WhsCode"
 LEFT JOIN
-	"HBTGELVEZ_CUCUTA"."OSTC" T7
+	{2}."OSTC" T7
 		ON T1."TaxCodeAP" = T7."Code"
 LEFT JOIN
-	"HBTGELVEZ_CUCUTA"."OSTC" T8
+	{2}."OSTC" T8
 		ON T1."TaxCodeAR" = T8."Code"
 WHERE
 	T3."ItmsGrpCod" = {0}

@@ -1,1 +1,4 @@
-from .dataGeneration import Proveedores
+
+import json
+def controlsend():
+    pass

@@ -19,38 +19,16 @@ print('conectado')
 
 class Proveedores:
 
-    def __init__(self,house, nameHouse, cellars, emailProveedor, scheme):
+    def __init__(self,house, nameHouse, cellars, scheme):
         self.house = house
         self.nameHouse = nameHouse
         self.cellars = cellars
-        self.emailProveedor = emailProveedor
         self.sheme = scheme
     
-    """ #Getters del objeto proveedor
-    @property
-    def house(self):
-        return self.house
-    
-    @property
-    def nameHouse(self):
-        return self.nameHouse
-    
-    @property
-    def cellars(self):
-        return self.cellars
-    
-    @property
-    def emailProveedor(self):
-        return self.emailProveedor
-    
-    @property
-    def schema(self):
-        return self.sheme """
-
     def triggersQuery(self):
         cursor = coon.cursor()
         querySQL = open('C:/Users/siste/OneDrive/Imágenes/DesarrollosSistemasWilmer/SendMail/SendEmailAutomatic/scripts/query/Iventory.sql')
-        cursor.execute(str(querySQL.read().format(self.house, self.cellars)))
+        cursor.execute(str(querySQL.read().format(self.house, self.cellars ,self.sheme)))
         return cursor.fetchall()
     
     def transformData(self):
@@ -94,7 +72,7 @@ class Proveedores:
         
         hoja['R{}'.format(len(data)+2)] = Data_2['TotalUltimoPrecioCompra'].sum()
         
-        wb.save(self.nameArchivo())
+        wb.save(os.path.join(os.getcwd(),'SendEmailAutomatic/scripts/'+self.nameArchivo()))
 
     def nameArchivo(self):
         return 'Iventario {}.xlsx'.format(self.nameHouse)

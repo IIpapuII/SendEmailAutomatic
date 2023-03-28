@@ -43,7 +43,7 @@ class sendMail():
         email["Subject"] = self.affair
         
         email.set_content(self.set_menssage(), subtype= 'html')
-        with open(nameArchive,'rb') as f:
+        with open(os.path.join(os.getcwd(),'SendEmailAutomatic/scripts/'+nameArchive),'rb') as f:
             email.add_attachment(
                 f.read(),
                 filename = nameArchive,

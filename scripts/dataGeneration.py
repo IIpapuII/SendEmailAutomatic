@@ -1,9 +1,12 @@
 from hdbcli import dbapi
 import os
-from pathlib import Path, PurePath
 from dotenv import load_dotenv
 import pandas as pd
 import openpyxl
+
+"""
+Modulo Encardo de la conexión a la base y generación del archivo de ecxel 
+"""
 
 load_dotenv()
 #coneción al server  de DataBase
@@ -15,10 +18,12 @@ coon = dbapi.connect(
     
 )
 print('conectado')
-#print(os.path.abspath(__file__))
+
 
 class Proveedores:
-
+    """
+    Se encarga de generar el objeto del provedor junto con el iventario que maneja
+    """
     def __init__(self,house, nameHouse, cellars, scheme):
         self.house = house
         self.nameHouse = nameHouse
@@ -27,7 +32,7 @@ class Proveedores:
     
     def triggersQuery(self):
         cursor = coon.cursor()
-        querySQL = open('C:/Users/siste/OneDrive/Imágenes/DesarrollosSistemasWilmer/SendMail/SendEmailAutomatic/scripts/query/Iventory.sql')
+        querySQL = open(os.path.join(os.getcwd(),'SendEmailAutomatic/scripts/query/Iventory.sql'))
         cursor.execute(str(querySQL.read().format(self.house, self.cellars ,self.sheme)))
         return cursor.fetchall()
     
@@ -72,7 +77,7 @@ class Proveedores:
         
         hoja['R{}'.format(len(data)+2)] = Data_2['TotalUltimoPrecioCompra'].sum()
         
-        wb.save(os.path.join(os.getcwd(),'SendEmailAutomatic/scripts/'+self.nameArchivo()))
+        wb.save(os.path.join(os.getcwd(),'SendEmailAutomatic/scripts/docs/'+self.nameArchivo()))
 
     def nameArchivo(self):
         return 'Iventario {}.xlsx'.format(self.nameHouse)

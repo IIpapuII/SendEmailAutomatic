@@ -2,16 +2,18 @@ from email.message import EmailMessage
 import smtplib
 from dataGeneration import Proveedores
 import os
+from datetime import datetime
 from dotenv import load_dotenv 
-
+""" Modulo Encarado de Enviar correos"""
 load_dotenv()
+date = datetime.now()
 class sendMail():
-
+    """ Clase Encargada de Gestinar el envio del correo a los proveedores"""
     def __init__(self,sender, addressee,nameCellers,nameHouse):
         self._sender = sender
         self.addressee = addressee
         self.menssage = ''
-        self.affair = 'Envio Prueba'
+        self.affair = 'Inventario de {} a corte de {}'
         self.serverSMTP = "smtp.gmail.com"
         self.nameCellers = nameCellers
         self.nameHouse = nameHouse
@@ -29,7 +31,7 @@ class sendMail():
         self._sender = sender
     
     def set_menssage(self):
-        text = open ('C:/Users/siste/OneDrive/Imágenes/DesarrollosSistemasWilmer/SendMail/SendEmailAutomatic/scripts/menssage.html','r')
+        text = open (os.path.join(os.getcwd(), 'SendEmailAutomatic/scripts/templates/menssage.html'),'r')
         self.menssage = str(text.read())
         self.menssage = self.menssage.format(self.nameHouse, self.nameCellers)
         self.menssage =self.menssage.replace('#','{')
@@ -40,10 +42,10 @@ class sendMail():
         email = EmailMessage()
         email["From"] = self.sender
         email["To"] = (self.addressee)
-        email["Subject"] = self.affair
+        email["Subject"] = self.affair.format(self.nameHouse, date.strftime("%m/%d/%Y"))
         
         email.set_content(self.set_menssage(), subtype= 'html')
-        with open(os.path.join(os.getcwd(),'SendEmailAutomatic/scripts/'+nameArchive),'rb') as f:
+        with open(os.path.join(os.getcwd(),'SendEmailAutomatic/scripts/docs/'+nameArchive),'rb') as f:
             email.add_attachment(
                 f.read(),
                 filename = nameArchive,

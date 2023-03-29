@@ -53,7 +53,7 @@ Tomar el bash para ser ejecutado
 
 ## Estructura de archivos internos
 
-Los siguientes archivos deben sercreados en la ruta `SendEmailAutomatic/scripts/`
+Los siguientes archivos deben sercreados en la ruta `/SendEmailAutomatic/scripts/`
 
 # .env
 Archivo Encargado de contener las variables de entorno con la coneción del server
@@ -69,6 +69,17 @@ PASSWORDEMAIL = emailPasswordporgmail
 Archivo de consulta para poder realizar el proceso de envio a los diferentes usuarios.
 
 ~~~ json
-
+{
+    "KIMBERLY-ICH": {
+        "sender" : "remitente@gmail.com",
+        "addresse" : ["enviadoOne@gmail.com","EnviadoTwo@gmail.com"],
+        "codeCellers": "007,050,08",
+        "nameHouse": "KIMBERLY-ICH",
+        "nameCellers" : "-PRINCIPAL CUCUTA<br> -AVERIAS         CUCUTA<br> -> Se comparte inventario de averías con el fin de tener su apoyo con la pronta solución.<br> -CUCUTA MNM-TAT <br>",
+        "ShemeDB" : "HBTESQUEMAdb" ,
+        "codeHouse" : 147 
+    }
+}
 ~~~
+Se debe serguir la siguiente estrucutura para agregar un nuevo provedor y en addresse se pueden agregar la cantidad de correos que deben recibir a información. 
 

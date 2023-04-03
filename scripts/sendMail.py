@@ -1,6 +1,5 @@
 from email.message import EmailMessage
 import smtplib
-from dataGeneration import Proveedores
 import os
 from datetime import datetime
 from dotenv import load_dotenv 
@@ -45,7 +44,7 @@ class sendMail():
         email["Subject"] = self.affair.format(self.nameHouse, date.strftime("%m/%d/%Y"))
         
         email.set_content(self.set_menssage(), subtype= 'html')
-        with open(os.path.join(os.getcwd(),'SendEmailAutomatic/scripts/docs/'+nameArchive),'rb') as f:
+        with open(os.path.join(os.getcwd(),'SendEmailAutomatic/docs/'+nameArchive),'rb') as f:
             email.add_attachment(
                 f.read(),
                 filename = nameArchive,

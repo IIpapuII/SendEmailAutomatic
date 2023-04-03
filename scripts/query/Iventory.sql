@@ -65,7 +65,7 @@ LEFT JOIN
 	{2}."OSTC" T8
 		ON T1."TaxCodeAR" = T8."Code"
 WHERE
-	T3."ItmsGrpCod" = {0}
+	T3."ItmsGrpCod" in ({0})
 	AND T6."WhsCode"  in ({1})
 	AND T2A."DocDate" <= TO_VARCHAR(CURRENT_DATE,'YYYYMMDD')
 GROUP BY

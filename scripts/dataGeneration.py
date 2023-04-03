@@ -77,7 +77,7 @@ class Proveedores:
         
         hoja['R{}'.format(len(data)+2)] = Data_2['TotalUltimoPrecioCompra'].sum()
         
-        wb.save(os.path.join(os.getcwd(),'SendEmailAutomatic/scripts/docs/'+self.nameArchivo()))
+        wb.save(os.path.join(os.getcwd(),'SendEmailAutomatic/docs/'+self.nameArchivo()))
 
     def nameArchivo(self):
         return 'Iventario {}.xlsx'.format(self.nameHouse)

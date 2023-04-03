@@ -30,7 +30,7 @@ class sendMail():
         self._sender = sender
     
     def set_menssage(self):
-        text = open (os.path.join(os.getcwd(), 'SendEmailAutomatic/scripts/templates/menssage.html'),'r')
+        text = open (os.path.join(os.getcwd(), 'templates/menssage.html'),'r')
         self.menssage = str(text.read())
         self.menssage = self.menssage.format(self.nameHouse, self.nameCellers)
         self.menssage =self.menssage.replace('#','{')
@@ -44,7 +44,7 @@ class sendMail():
         email["Subject"] = self.affair.format(self.nameHouse, date.strftime("%m/%d/%Y"))
         
         email.set_content(self.set_menssage(), subtype= 'html')
-        with open(os.path.join(os.getcwd(),'SendEmailAutomatic/docs/'+nameArchive),'rb') as f:
+        with open(os.path.join(os.getcwd(),'docs/'+nameArchive),'rb') as f:
             email.add_attachment(
                 f.read(),
                 filename = nameArchive,

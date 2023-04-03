@@ -6,7 +6,7 @@ import os
 def controlsend():
     """ Modulo Encargado de Gestionar la lectura del Json Junto con el Envio de los archivos Generados """
 
-    dataJSON = open(os.path.join(os.getcwd(),'data.json'), "r")
+    dataJSON = open(os.path.join(os.getcwd(),'scripts/data.json'), "r")
     dataJSON = json.loads(str(dataJSON.read()))
     #Contron de Lectura
     for i in dataJSON:

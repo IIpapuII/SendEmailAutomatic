@@ -23,5 +23,5 @@ def controlsend():
             dataJSON[i]['nameHouse'])
         triggerData.transformData()
         print('Se Genero: ', triggerData.nameHouse)
-        #triggerMail.sendProviderEmail(triggerData.nameArchivo())
+        triggerMail.sendProviderEmail(triggerData.nameArchivo())
         

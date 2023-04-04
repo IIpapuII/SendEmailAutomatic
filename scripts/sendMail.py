@@ -30,7 +30,7 @@ class sendMail():
         self._sender = sender
     
     def set_menssage(self):
-        text = open (os.path.join(os.getcwd(), 'templates/menssage.html'),'r')
+        text = open (os.path.join(os.getcwd(), 'scripts/templates/menssage.html'),'r')
         self.menssage = str(text.read())
         self.menssage = self.menssage.format(self.nameHouse, self.nameCellers)
         self.menssage =self.menssage.replace('#','{')

@@ -1,3 +1,3 @@
 #!/bin/bash
 
-ptyhon ~/DesarrolloParaGelvez/SendEmailAutomatic/scripts/main.py  
+ptyhon3.9 ~/DesarrolloParaGelvez/SendEmailAutomatic/scripts/main.py  

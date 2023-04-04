@@ -32,7 +32,7 @@ class Proveedores:
     
     def triggersQuery(self):
         cursor = coon.cursor()
-        querySQL = open(os.path.join(os.path.abspath("."),'scripts/query/Iventory.sql'))
+        querySQL = open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'query/Iventory.sql'))
         cursor.execute(str(querySQL.read().format(self.house, self.cellars ,self.sheme)))
         return cursor.fetchall()
     
@@ -77,7 +77,7 @@ class Proveedores:
         
         hoja['R{}'.format(len(data)+2)] = Data_2['TotalUltimoPrecioCompra'].sum()
         
-        wb.save(os.path.join(os.path.abspath("."),'docs/'+self.nameArchivo()))
+        wb.save(os.path.join(os.path.dirname(os.path.abspath(__file__)),'docs/'+self.nameArchivo()))
 
     def nameArchivo(self):
         return 'Iventario {}.xlsx'.format(self.nameHouse)

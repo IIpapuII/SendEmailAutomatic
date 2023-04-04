@@ -32,7 +32,7 @@ class Proveedores:
     
     def triggersQuery(self):
         cursor = coon.cursor()
-        querySQL = open(os.path.join(os.getcwd(),'query/Iventory.sql'))
+        querySQL = open(os.path.join(os.getcwd(),'scripts/query/Iventory.sql'))
         cursor.execute(str(querySQL.read().format(self.house, self.cellars ,self.sheme)))
         return cursor.fetchall()
     

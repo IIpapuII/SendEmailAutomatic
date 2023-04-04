@@ -44,7 +44,7 @@ class sendMail():
         email["Subject"] = self.affair.format(self.nameHouse, date.strftime("%m/%d/%Y"))
         
         email.set_content(self.set_menssage(), subtype= 'html')
-        with open(os.path.join(os.getcwd(),'docs/'+nameArchive),'rb') as f:
+        with open(os.path.join(os.getcwd(),'DesarrolloParaGelvez/SendEmailAutomatic/docs/'+nameArchive),'rb') as f:
             email.add_attachment(
                 f.read(),
                 filename = nameArchive,

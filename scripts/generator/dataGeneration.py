@@ -3,23 +3,12 @@ import os
 from dotenv import load_dotenv
 import pandas as pd
 import openpyxl
+from model.conectDB import conect
 
 """
 Modulo Encardo de la conexión a la base y generación del archivo de ecxel 
 """
-
-load_dotenv()
-#coneción al server  de DataBase
-coon = dbapi.connect(
-    address= os.getenv('SERVERSAP'),
-    user= os.getenv('USERSAP'),
-    port= os.getenv('PORTSAP'),
-    password= os.getenv('PASSWORDSAP')
-    
-)
-print('conectado')
-
-
+coon = conect()
 class Proveedores:
     """
     Se encarga de generar el objeto del provedor junto con el iventario que maneja
@@ -32,7 +21,7 @@ class Proveedores:
     
     def triggersQuery(self):
         cursor = coon.cursor()
-        querySQL = open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'query/Iventory.sql'))
+        querySQL = open(os.path.join(os.path.dirname(os.path.abspath('script')),'scripts/query/Iventory.sql'))
         cursor.execute(str(querySQL.read().format(self.house, self.cellars ,self.sheme)))
         return cursor.fetchall()
     
@@ -77,7 +66,7 @@ class Proveedores:
         
         hoja['R{}'.format(len(data)+2)] = Data_2['TotalUltimoPrecioCompra'].sum()
         
-        wb.save(os.path.join(os.path.dirname(os.path.abspath(__file__)),'docs/'+self.nameArchivo()))
+        wb.save(os.path.join(os.path.dirname(os.path.abspath('docs')),'scripts/docs/'+self.nameArchivo()))
 
     def nameArchivo(self):
         return 'Iventario {}.xlsx'.format(self.nameHouse)

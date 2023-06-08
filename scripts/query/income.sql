@@ -8,39 +8,39 @@ T8."ItmsGrpNam" AS "NombreGrupoProducto",
 	MOD(T2."Quantity",T7."SalPackUn") AS "Unidades",
 T11."SlpName"
 FROM
-	"OPCH" T1
+	{3}."OPCH" T1
 INNER JOIN
-	"PCH1" T2
+	{3}."PCH1" T2
 		ON T1."DocEntry" = T2."DocEntry"
 INNER JOIN
-	"PCH12" T3
+	{3}."PCH12" T3
 		ON T1."DocEntry" = T3."DocEntry"
 INNER JOIN
-	"NNM1" T4
+	{3}."NNM1" T4
 		ON T1."Series" = T4."Series"
 --	CLIENTE
 INNER JOIN
-	"OCRD" T5
+	{3}."OCRD" T5
 		ON T1."CardCode" = T5."CardCode"
 INNER JOIN
-	"OCRG" T6
+	{3}."OCRG" T6
 		ON T5."GroupCode" = T6."GroupCode"
 --	PRODUCTO
 INNER JOIN
-	"OITM" T7
+	{3}."OITM" T7
 		ON T2."ItemCode" = T7."ItemCode"
 INNER JOIN
-	"OITB" T8
+	{3}."OITB" T8
 		ON T7."ItmsGrpCod" = T8."ItmsGrpCod"
 LEFT JOIN
-	"@GD_SUBGRUPO" T9
+	{3}."@GD_SUBGRUPO" T9
 		ON T7."U_GD_SubGrupo" = T9."Code"
 LEFT JOIN
-	"@GD_FAMPRODUCTOS" T10
+	{3}."@GD_FAMPRODUCTOS" T10
 		ON T7."U_GD_FamProducto" = T10."Code"
 --	VENDEDOR
 INNER JOIN
-	"OSLP" T11
+	{3}."OSLP" T11
 		ON T1."SlpCode" = T11."SlpCode"
 WHERE
 	T1."DocDate" BETWEEN '{0}' AND '{1}'
@@ -117,39 +117,39 @@ T8."ItmsGrpNam" AS "NombreGrupoProducto",
 	-MOD(T2."Quantity",T7."SalPackUn") AS "Unidades",
 T11."SlpName"
 FROM
-	"ORPC" T1
+	{3}."ORPC" T1
 INNER JOIN
-	"RPC1" T2
+	{3}."RPC1" T2
 		ON T1."DocEntry" = T2."DocEntry"
 INNER JOIN
-	"RPC12" T3
+	{3}."RPC12" T3
 		ON T1."DocEntry" = T3."DocEntry"
 INNER JOIN
-	"NNM1" T4
+	{3}."NNM1" T4
 		ON T1."Series" = T4."Series"
 --	CLIENTE
 INNER JOIN
-	"OCRD" T5
+	{3}."OCRD" T5
 		ON T1."CardCode" = T5."CardCode"
 INNER JOIN
-	"OCRG" T6
+	{3}."OCRG" T6
 		ON T5."GroupCode" = T6."GroupCode"
 --	PRODUCTO
 INNER JOIN
-	"OITM" T7
+	{3}."OITM" T7
 		ON T2."ItemCode" = T7."ItemCode"
 INNER JOIN
-	"OITB" T8
+	{3}."OITB" T8
 		ON T7."ItmsGrpCod" = T8."ItmsGrpCod"
 LEFT JOIN
-	"@GD_SUBGRUPO" T9
+	{3}."@GD_SUBGRUPO" T9
 		ON T7."U_GD_SubGrupo" = T9."Code"
 LEFT JOIN
-	"@GD_FAMPRODUCTOS" T10
+	{3}."@GD_FAMPRODUCTOS" T10
 		ON T7."U_GD_FamProducto" = T10."Code"
 --	VENDEDOR
 INNER JOIN
-	"OSLP" T11
+	{3}."OSLP" T11
 		ON T1."SlpCode" = T11."SlpCode"
 WHERE
 	T1."DocDate" BETWEEN '{0}' AND '{1}'

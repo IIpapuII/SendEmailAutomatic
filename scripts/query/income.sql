@@ -1,4 +1,7 @@
 SELECT
+	*
+FROM (
+SELECT
 T8."ItmsGrpNam" AS "NombreGrupoProducto",
 	--PRODUCTO
 	T2."ItemCode" AS "CodigoProducto",
@@ -6,7 +9,7 @@ T8."ItmsGrpNam" AS "NombreGrupoProducto",
              T2."CodeBars" AS "CodigoBarras",
 	TO_INT(T2."Quantity" / T7."SalPackUn") AS "Cajas",
 	MOD(T2."Quantity",T7."SalPackUn") AS "Unidades",
-T11."SlpName"
+	T2."WhsCode" AS "Almacen"
 FROM
 	{2}."OPCH" T1
 INNER JOIN
@@ -44,6 +47,7 @@ INNER JOIN
 		ON T1."SlpCode" = T11."SlpCode"
 WHERE
 	T1."DocDate" BETWEEN '{0}' AND '{1}'
+	AND T2."WhsCode" IN ('{3}')
  AND T11."SlpCode" = '80'
 	--AND T1."DocNum" = '10078561'
 AND T8."ItmsGrpCod" not in (247,
@@ -115,7 +119,7 @@ T8."ItmsGrpNam" AS "NombreGrupoProducto",
              T2."CodeBars" AS "CodigoBarras",
 	-TO_INT(T2."Quantity" / T7."SalPackUn") AS "Cajas",
 	-MOD(T2."Quantity",T7."SalPackUn") AS "Unidades",
-T11."SlpName"
+	T2."WhsCode" AS "Almacen"
 FROM
 	{2}."ORPC" T1
 INNER JOIN
@@ -153,6 +157,7 @@ INNER JOIN
 		ON T1."SlpCode" = T11."SlpCode"
 WHERE
 	T1."DocDate" BETWEEN '{0}' AND '{1}'
+	AND T2."WhsCode" IN ('{3}')
  AND T11."SlpCode" = '80'
 AND T8."ItmsGrpCod" NOT IN (247,
 226,
@@ -211,4 +216,5 @@ AND T8."ItmsGrpCod" NOT IN (247,
 235,
 249,
 234,
-233)
+233) ) TA
+ORDER BY TA."NombreGrupoProducto" DESC

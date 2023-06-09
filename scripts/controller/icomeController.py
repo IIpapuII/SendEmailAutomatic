@@ -1,2 +1,9 @@
-from model.conectDB import conect
-from model.modelSQL import Icomes
+from generator.icomesGeneration import icomeSuper
+import pandas as pd
+
+
+def controllerIcome():
+    data, description  =icomeSuper()
+    print(pd.DataFrame(data))
+    print(pd.array(description))
+

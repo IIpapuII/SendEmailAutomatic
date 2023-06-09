@@ -8,39 +8,39 @@ T8."ItmsGrpNam" AS "NombreGrupoProducto",
 	MOD(T2."Quantity",T7."SalPackUn") AS "Unidades",
 T11."SlpName"
 FROM
-	{3}."OPCH" T1
+	{2}."OPCH" T1
 INNER JOIN
-	{3}."PCH1" T2
+	{2}."PCH1" T2
 		ON T1."DocEntry" = T2."DocEntry"
 INNER JOIN
-	{3}."PCH12" T3
+	{2}."PCH12" T3
 		ON T1."DocEntry" = T3."DocEntry"
 INNER JOIN
-	{3}."NNM1" T4
+	{2}."NNM1" T4
 		ON T1."Series" = T4."Series"
 --	CLIENTE
 INNER JOIN
-	{3}."OCRD" T5
+	{2}."OCRD" T5
 		ON T1."CardCode" = T5."CardCode"
 INNER JOIN
-	{3}."OCRG" T6
+	{2}."OCRG" T6
 		ON T5."GroupCode" = T6."GroupCode"
 --	PRODUCTO
 INNER JOIN
-	{3}."OITM" T7
+	{2}."OITM" T7
 		ON T2."ItemCode" = T7."ItemCode"
 INNER JOIN
-	{3}."OITB" T8
+	{2}."OITB" T8
 		ON T7."ItmsGrpCod" = T8."ItmsGrpCod"
 LEFT JOIN
-	{3}."@GD_SUBGRUPO" T9
+	{2}."@GD_SUBGRUPO" T9
 		ON T7."U_GD_SubGrupo" = T9."Code"
 LEFT JOIN
-	{3}."@GD_FAMPRODUCTOS" T10
+	{2}."@GD_FAMPRODUCTOS" T10
 		ON T7."U_GD_FamProducto" = T10."Code"
 --	VENDEDOR
 INNER JOIN
-	{3}."OSLP" T11
+	{2}."OSLP" T11
 		ON T1."SlpCode" = T11."SlpCode"
 WHERE
 	T1."DocDate" BETWEEN '{0}' AND '{1}'
@@ -117,39 +117,39 @@ T8."ItmsGrpNam" AS "NombreGrupoProducto",
 	-MOD(T2."Quantity",T7."SalPackUn") AS "Unidades",
 T11."SlpName"
 FROM
-	{3}."ORPC" T1
+	{2}."ORPC" T1
 INNER JOIN
-	{3}."RPC1" T2
+	{2}."RPC1" T2
 		ON T1."DocEntry" = T2."DocEntry"
 INNER JOIN
-	{3}."RPC12" T3
+	{2}."RPC12" T3
 		ON T1."DocEntry" = T3."DocEntry"
 INNER JOIN
-	{3}."NNM1" T4
+	{2}."NNM1" T4
 		ON T1."Series" = T4."Series"
 --	CLIENTE
 INNER JOIN
-	{3}."OCRD" T5
+	{2}."OCRD" T5
 		ON T1."CardCode" = T5."CardCode"
 INNER JOIN
-	{3}."OCRG" T6
+	{2}."OCRG" T6
 		ON T5."GroupCode" = T6."GroupCode"
 --	PRODUCTO
 INNER JOIN
-	{3}."OITM" T7
+	{2}."OITM" T7
 		ON T2."ItemCode" = T7."ItemCode"
 INNER JOIN
-	{3}."OITB" T8
+	{2}."OITB" T8
 		ON T7."ItmsGrpCod" = T8."ItmsGrpCod"
 LEFT JOIN
-	{3}."@GD_SUBGRUPO" T9
+	{2}."@GD_SUBGRUPO" T9
 		ON T7."U_GD_SubGrupo" = T9."Code"
 LEFT JOIN
-	{3}."@GD_FAMPRODUCTOS" T10
+	{2}."@GD_FAMPRODUCTOS" T10
 		ON T7."U_GD_FamProducto" = T10."Code"
 --	VENDEDOR
 INNER JOIN
-	{3}."OSLP" T11
+	{2}."OSLP" T11
 		ON T1."SlpCode" = T11."SlpCode"
 WHERE
 	T1."DocDate" BETWEEN '{0}' AND '{1}'

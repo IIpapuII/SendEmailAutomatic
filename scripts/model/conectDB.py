@@ -2,9 +2,6 @@
 from hdbcli import dbapi
 import os
 from dotenv import load_dotenv
-import pandas as pd
-import openpyxl
-
 """
 Modulo Encardo de la conexión a la base y generación del archivo de ecxel 
 """
@@ -19,4 +16,4 @@ def conect():
     password= os.getenv('PASSWORDSAP')
     )
     print("conectado")
-    return conn
+    return conn.cursor()

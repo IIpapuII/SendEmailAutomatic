@@ -1,5 +1,6 @@
 import pandas as pd
 import os 
+from datetime import datetime
 
 #SQL description extraction function
 def ExtractDescription(DataDescription: list) -> list:
@@ -24,3 +25,9 @@ def passArray(Data):
 
 def exportExcel(dataFrame, NameArchive):
     pd.DataFrame(dataFrame).to_excel(os.path.join(os.path.dirname(os.path.abspath('docs')),'scripts/docs/'+ NameArchive))
+
+
+def dateNowPC():
+    date = datetime.now()
+    return date.strftime("%d/%m/%Y")
+

@@ -5,17 +5,16 @@ from datetime import datetime
 from dotenv import load_dotenv 
 """ Modulo Encarado de Enviar correos"""
 load_dotenv()
-date = datetime.now()
-class sendMail():
+class sendMailEcxel():
     """ Clase Encargada de Gestinar el envio del correo a los proveedores"""
-    def __init__(self,sender, addressee,nameCellers,nameHouse):
+    def __init__(self,sender, addressee, affair, menssage, nameArchive):
         self._sender = sender
         self.addressee = addressee
-        self.menssage = ''
-        self.affair = 'Inventario de {} a corte de {}'
+        self.menssage = menssage
+        self.nameArchive = nameArchive
+        #self.affair = 'Inventario de {} a corte de {}'
+        self.affair = affair
         self.serverSMTP = "smtp.gmail.com"
-        self.nameCellers = nameCellers
-        self.nameHouse = nameHouse
         self.portServerSMTP = 465
 
     
@@ -37,17 +36,17 @@ class sendMail():
         self.menssage =self.menssage.replace('+','}')
         return self.menssage
 
-    def sendProviderEmail(self,nameArchive):
+    def sendProviderEmail(self):
         email = EmailMessage()
         email["From"] = self.sender
         email["To"] = (self.addressee)
-        email["Subject"] = self.affair.format(self.nameHouse, date.strftime("%m/%d/%Y"))
+        email["Subject"] = self.affair
         
-        email.set_content(self.set_menssage(), subtype= 'html')
-        with open(os.path.join(os.path.dirname(os.path.abspath('docs')),'scripts/docs/'+nameArchive),'rb') as f:
+        email.set_content(self.menssage, subtype= 'html')
+        with open(os.path.join(os.path.dirname(os.path.abspath('docs')),'scripts/docs/'+self.nameArchive),'rb') as f:
             email.add_attachment(
                 f.read(),
-                filename = nameArchive,
+                filename = self.nameArchive,
                 maintype = "application",
                 subtype = "vnd.ms-excel"
             )

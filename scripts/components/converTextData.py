@@ -1,5 +1,7 @@
 import os
-class converText:
+
+
+class ConverText:
     def converTextSQL(fileNameSQL):
         querySQL = open(os.path.join(os.path.dirname(os.path.abspath('script')),'scripts/query/'+ fileNameSQL))
         return querySQL.read()
@@ -8,3 +10,5 @@ class converText:
         querySQL = open(os.path.join(os.path.dirname(os.path.abspath('script')),'scripts/query/'+ fileNameSQL))
         querySQL = str(querySQL.read()).format(*vars)
         return querySQL
+
+

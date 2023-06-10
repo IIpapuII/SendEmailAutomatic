@@ -31,4 +31,6 @@ class ConverText:
     def ConverAffairText(menssage, *vars):
         text = menssage.format(*vars)
         return menssage
+    
+    
 

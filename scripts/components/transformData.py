@@ -31,3 +31,7 @@ def dateNowPC():
     date = datetime.now()
     return date.strftime("%d/%m/%Y")
 
+def dateNowHana():
+    date = datetime.now()
+    return date.strftime("%Y%m%d")
+

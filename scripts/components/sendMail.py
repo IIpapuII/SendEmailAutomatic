@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 load_dotenv()
 class sendMailEcxel():
     """ Clase Encargada de Gestinar el envio del correo a los proveedores"""
-    def __init__(self,sender, addressee, affair, menssage, nameArchive):
+    def __init__(self,sender: str, addressee: str, affair:str, menssage:str, nameArchive:str):
         self._sender = sender
         self.addressee = addressee
         self.menssage = menssage

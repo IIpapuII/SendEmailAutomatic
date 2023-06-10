@@ -19,8 +19,16 @@ class ConverText:
         querySQL = str(querySQL.read()).format(*vars)
         return querySQL
     
-    def ConverMenssajeHTML(fileNameHTML):
+    def ConverMenssajeHTML(fileNameHTML, *vars):
+        menssage = ''
         text = open (os.path.join(os.path.dirname(os.path.abspath('templates')), 'Scripts/templates/'+ fileNameHTML),'r')
-        return text.read()
+        menssage = str(text.read())
+        menssage = menssage.format(*vars)
+        menssage = menssage.replace('#','{')
+        menssage = menssage.replace('+', '}')
+        return menssage
 
+    def ConverAffairText(menssage, *vars):
+        text = menssage.format(*vars)
+        return menssage
 

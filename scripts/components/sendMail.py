@@ -28,14 +28,6 @@ class sendMailEcxel():
     def set_sender(self,sender):
         self._sender = sender
     
-    def set_menssage(self):
-        text = open (os.path.join(os.path.dirname(os.path.abspath('templates')), 'Scripts/templates/menssage.html'),'r')
-        self.menssage = str(text.read())
-        self.menssage = self.menssage.format(self.nameHouse, self.nameCellers)
-        self.menssage =self.menssage.replace('#','{')
-        self.menssage =self.menssage.replace('+','}')
-        return self.menssage
-
     def sendProviderEmail(self):
         email = EmailMessage()
         email["From"] = self.sender

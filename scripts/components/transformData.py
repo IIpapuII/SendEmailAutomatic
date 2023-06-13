@@ -1,6 +1,7 @@
 import pandas as pd
 import os 
 from datetime import datetime
+from jinja2 import Environment, FileSystemLoader
 
 #SQL description extraction function
 def ExtractDescription(DataDescription: list) -> list:
@@ -34,4 +35,11 @@ def dateNowPC():
 def dateNowHana():
     date = datetime.now()
     return date.strftime("%Y%m%d")
+
+def exportHTML(nameArchive):
+    loader = FileSystemLoader('scripts/templates')
+    env = Environment(loader= loader)
+    template = env.get_template(nameArchive)
+    body = template.render()
+    return body
 

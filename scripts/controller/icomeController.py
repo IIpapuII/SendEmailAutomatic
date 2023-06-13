@@ -1,7 +1,7 @@
 from components.sendMail import sendMailEcxel
 from generator.icomeGenerateDate import SendIcomes
 from components.dataExtract import extracJSON
-from components.transformData import dateNowHana
+from components.transformData import dateNowHana, exportHTML
 
 def sendIcomesJson():
     
@@ -18,7 +18,7 @@ def sendIcomesJson():
             dataJSON[i]['sender'],
             dataJSON[i]['addresse'],
             'Entrada de Mercancia',
-            'Mensaje de prueba',
+            exportHTML('goodsReceipt.html'),
             'IngresoMercancia.xlsx'
         )
         if triggerData.controllerIcome() == False:

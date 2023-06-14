@@ -11,14 +11,14 @@ def sendIcomesJson():
         triggerData = SendIcomes(
             dataJSON[i]['schemeDB'],
             dataJSON[i]['wareHouse'],
-            '20230601',
-            '20230610'
+            dateNowHana(),
+            dateNowHana()
         )
         triggerMail = sendMailEcxel(
             dataJSON[i]['sender'],
             dataJSON[i]['addresse'],
             'Entrada de Mercancia',
-            exportHTML('goodsReceipt.html'),
+            exportHTML('goodsReceipt.html',Date=dateNowHana()),
             'IngresoMercancia.xlsx'
         )
         if triggerData.controllerIcome() == False:

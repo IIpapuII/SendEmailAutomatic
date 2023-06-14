@@ -36,10 +36,10 @@ def dateNowHana():
     date = datetime.now()
     return date.strftime("%Y%m%d")
 
-def exportHTML(nameArchive):
+def exportHTML(nameArchive, **vars):
     loader = FileSystemLoader('scripts/templates')
     env = Environment(loader= loader)
     template = env.get_template(nameArchive)
-    body = template.render()
+    body = template.render(**vars)
     return body
 

@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Secular+One&display=swap" rel="stylesheet">
+
     <style>
         .text {
             font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             font-style: italic;
             line-height: 1px;
             color: black;
+        }
+
+        #nametitle {
+            color:#7B0F10;
+        }
+
+        #sub {
+            font-size: 15px;
         }
 
         #box {
@@ -21,7 +33,12 @@
         }
         
         #logo {
-            height: 40px;
+            font-family: 'Secular One', sans-serif;
+            font-size: 20px;
+            margin-top: 0px;
+            margin-bottom: 15px;
+            line-height: 17px;
+            text-align: left;
         }
 
         #name {
@@ -54,13 +71,16 @@
 
 <body>
     <div>
-        <h1 class="text" >Entrada de mercancia</h1>
-        <p>Cordial saludo,  <br> 
-        Se adjunta ela  </p>
+        <h1 class="text">
+            Entrada de mercancia {{Date}}
+        </h1>
+        <p>Cordial saludo, <br>
+        Se adjunta el archivo de las entradas realizadas.
+        </p>
     </div>
     <div id="box">
-        <img src='/SendEmailAutomatic/scripts/templates/logo (1).png' alt="LogoGelvez" 
-        id="logo" class="text">
+        <p id="logo"><span id="nametitle">Gelvez</span>
+         <br><span id="sub">Distribuciones</span></p>
         <p class="text" id="name">Jonathan Santiago Soler</p>
         <p class="text" id="plan">Plan de TRADE</p>
         <p class="text" id="phone_number">(+57) 314-2545185</p>

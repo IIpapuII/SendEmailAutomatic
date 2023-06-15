@@ -4,60 +4,37 @@ from dotenv import load_dotenv
 import pandas as pd
 import openpyxl
 from model.conectDB import conect
+from components.converTextData import ConverText
+from components.dataExtract import extracData
+from model.modelSQL import Structure, Proveedor
 
 """
 Modulo Encardo de la conexión a la base y generación del archivo de ecxel 
 """
 coon = conect()
-class Proveedores:
+class ProveedoresSend(Structure):
     """
     Se encarga de generar el objeto del provedor junto con el iventario que maneja
     """
-    def __init__(self,house, nameHouse, cellars, scheme):
-        self.house = house
+
+    def __init__(self, schemeDB, 
+                 wareHouse, 
+                 initDate=None, 
+                 endDate=None, 
+                 nameCellers=None, 
+                 nameHouse=None, 
+                 codeHouse=None) -> None:
+        super().__init__(schemeDB, wareHouse, initDate, endDate)
+        self.nameCellers = nameCellers
         self.nameHouse = nameHouse
-        self.cellars = cellars
-        self.sheme = scheme
+        self.codeHouse = codeHouse
     
-    def triggersQuery(self):
-        cursor = coon.cursor()
-        querySQL = open(os.path.join(os.path.dirname(os.path.abspath('script')),'scripts/query/Iventory.sql'))
-        cursor.execute(str(querySQL.read().format(self.house, self.cellars ,self.sheme)))
-        return cursor.fetchall()
     
     def transformData(self):
-        nameRows =[
-        'CodigoProducto',
-        'EAN',
-        'CodigoProveedor',
-        'NombreProducto',
-        'NombreGrupoProducto',
-        'NombreSubGrupoProducto',
-        'NombreFamiliaProducto',
-        'Bodega',
-        'Nombre de Bodega',
-        'Presentación',
-        'Embalaje',
-        'Stock',
-        'Cajas',
-        'Unidades',
-        'CostoPromedio',
-        'UltimoPrecioCompra',
-        'TotalCostoPromedio',
-        'TotalUltimoPrecioCompra',
-        'UltimaFechaCompra',
-        'UltimaFechaVenta',
-        'IvaCompra',
-        'IvaCompraNobre',
-        'IvaVenta',
-        'IvaVentaNombre',
-        'EstadoGeneral',
-        'Comentario',
-        'EstadoAlmacen',
-        'CodigoBarras']
-        
-        data = pd.array(self.triggersQuery())
-        Data_2 = pd.DataFrame(self.triggersQuery(), columns= nameRows )
+        text = ConverText.converTextFormatSQL('Iventory.sql',self.codeHouse, self.wareHouse, self.schemeDB)
+        datas, nameRows = extracData(text)
+        data = pd.array(datas)
+        Data_2 = pd.DataFrame(datas, columns= nameRows )
         wb = openpyxl.Workbook()
         hoja = wb.active
         hoja.append(nameRows)

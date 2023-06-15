@@ -36,6 +36,10 @@ def dateNowHana():
     date = datetime.now()
     return date.strftime("%Y%m%d")
 
+def dateNowFormat():
+    date = datetime.now()
+    return date.strftime("%m/%d/%Y")
+
 def exportHTML(nameArchive, **vars):
     loader = FileSystemLoader('scripts/templates')
     env = Environment(loader= loader)

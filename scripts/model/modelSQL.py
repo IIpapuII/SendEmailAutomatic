@@ -8,11 +8,13 @@ class Structure():
 
 class Proveedor:
     def __init__(self,
-            nameCellers,
-            nameHouse
+            nameCellers = None,
+            nameHouse = None,
+            codeHouse = None
             
     ):
         self.nameCellers = nameCellers
         self.nameHouse = nameHouse
+        self.codeHouse = codeHouse
         
 

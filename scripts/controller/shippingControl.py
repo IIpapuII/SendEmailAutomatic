@@ -1,7 +1,7 @@
 from components  import sendMail
 from components.sendMail import sendMailEcxel
 from generator.dataGeneration import ProveedoresSend
-from components.transformData import exportHTML, dateNowHana
+from components.transformData import exportHTML, dateNowHana, dateNowFormat
 import json
 import os
 
@@ -21,7 +21,7 @@ def sendInventorySupplier():
         triggerMail = sendMailEcxel(
             dataJSON[i]['sender'],
             dataJSON[i]['addresse'],
-            dataJSON[i]['nameHouse'],
+            "Inventario de {0} a corte de {1}".format(dataJSON[i]['nameHouse'],dateNowFormat()),
             exportHTML('menssage.html', NameHouse = dataJSON[i]['nameHouse'], 
                        listWhareHouse = dataJSON[i]['nameCellers']),
             triggerData.nameArchivo()

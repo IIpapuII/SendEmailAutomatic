@@ -6,7 +6,7 @@ __pycache__/
 *.xlsx
 # C extensions
 *.so
-
+z
 # Distribution / packaging
 .Python
 build/

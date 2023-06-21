@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='SendEmailAutomatic',
-    version='1.0',
+    version='2.0',
     description='Send mail Proveedores',
     author='Wilmer Serrano | @IIpapuII',
     author_email= 'wilmer3428@gmail.com',

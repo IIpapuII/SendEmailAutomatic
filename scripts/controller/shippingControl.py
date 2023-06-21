@@ -8,7 +8,7 @@ import os
 def sendInventorySupplier():
     """ Modulo Encargado de Gestionar la lectura del Json Junto con el Envio de los archivos Generados """
 
-    dataJSON = open(os.path.join(os.path.dirname(os.path.abspath('config')),'scripts/config/data.json'), "r")
+    dataJSON = open(os.path.join(os.path.dirname(os.path.abspath('config')),'SendEmailAutomatic/scripts/config/data.json'), "r")
     dataJSON = json.loads(str(dataJSON.read()))
     #Contron de Lectura
     for i in dataJSON:

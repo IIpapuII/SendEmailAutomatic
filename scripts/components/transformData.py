@@ -2,6 +2,7 @@ import pandas as pd
 import os 
 from datetime import datetime
 from jinja2 import Environment, FileSystemLoader
+from num2words import num2words
 
 #SQL description extraction function
 def ExtractDescription(DataDescription: list) -> list:
@@ -47,3 +48,6 @@ def exportHTML(nameArchive, **vars):
     body = template.render(**vars)
     return body
 
+def convertNumberToText(numero):
+    texto = num2words(numero, lang='es')
+    return texto

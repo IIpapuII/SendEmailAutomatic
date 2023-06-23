@@ -5,7 +5,7 @@ class ConverText:
     """Class element utils
     
     Keyword arguments:
-    argument -- Se ecnarga de generar la transformacion de consultas
+    argument -- Se encarga de generar la transformacion de consultas
     y elementos de marcado como HTML
     Return: strings
     """
@@ -21,7 +21,7 @@ class ConverText:
     
     def ConverMenssajeHTML(fileNameHTML, *vars):
         menssage = ''
-        text = open (os.path.join(os.path.dirname(os.path.abspath('templates')), 'Scripts/templates/'+ fileNameHTML),'r')
+        text = open (os.path.join(os.path.dirname(os.path.abspath('templates')), 'scripts/templates/'+ fileNameHTML),'r')
         menssage = str(text.read())
         menssage = menssage.format(*vars)
         menssage = menssage.replace('#','{')

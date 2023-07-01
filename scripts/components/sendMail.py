@@ -35,13 +35,14 @@ class sendMailEcxel():
         email["Subject"] = self.affair
         
         email.set_content(self.menssage, subtype= 'html')
-        with open(os.path.join(os.path.dirname(os.path.abspath('docs')),'scripts/docs/'+self.nameArchive),'rb') as f:
-            email.add_attachment(
-                f.read(),
-                filename = self.nameArchive,
-                maintype = "application",
-                subtype = "vnd.ms-excel"
-            )
+        if self.nameArchive != None:
+            with open(os.path.join(os.path.dirname(os.path.abspath('docs')),'scripts/docs/'+self.nameArchive),'rb') as f:
+                email.add_attachment(
+                    f.read(),
+                    filename = self.nameArchive,
+                    maintype = "application",
+                    subtype = "vnd.ms-excel"
+                )
         
         smtp = smtplib.SMTP_SSL(self.serverSMTP, self.portServerSMTP)
         smtp.login(self.sender, os.getenv('PASSWORDEMAIL'))

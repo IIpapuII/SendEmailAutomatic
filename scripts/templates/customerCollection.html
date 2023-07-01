@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office"></html>
+
+    <head>
+
+        <meta charset="UTF-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <meta name="x-apple-disable-message-reformatting">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta content="telephone=no" name="format-detection">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=K2D:wght@400;700&display=swap" rel="stylesheet">
+        
+        <style>
+            #title {
+                width: 200px;
+            }
+
+            .text {
+                font-family: 'K2D', sans-serif;
+                font-size: small;                   /*Estilo del texto*/
+                text-align: justify;
+            }
+
+            span {
+                font-weight: bold;          /*Resaltar texto*/
+            }
+            
+            #box {
+                border: 3px #7B0F10 solid;
+                height: auto;
+                width: 400px;           /*Estilo del borde*/
+                border-radius: 10px;
+                padding: 10px 10px 10px 10px;
+
+                background-image: url('https://qivblu.stripocdn.email/content/guids/CABINET_bf53c089fa1d7edca832c660953b1053aaf8c792fb9e25e69404d65675690d1f/images/svg_kLB.png');
+                background-repeat: no-repeat;
+                background-position: left bottom;
+                background-size: contain;
+                padding-bottom: 115px;
+            }
+
+            #logo {
+                position: relative;
+                width: 200px;
+                padding: 0;
+                align-self: right;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="box">
+            <table>
+                <tr>
+                    <td id="title">
+                        <p class="text"><span>{{date_today}}</span></p>
+                
+                        <p class="text">Hola</p>
+
+                        <p class="text"><span>NOMBRE: {{client_name}}<br>
+                            CC. {{client_cc}}</span></p>
+                    </td>
+                    <td>
+                        <a target="_blank">
+                            <img id="logo" src="https://demo.stripocdn.email/content/guids/79874f80-95ea-46a1-a92e-3192ba93e1ec/images/logo.png" alt style="display: block;" width="200">
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <p class="text"><span>Asunto: Notificación de cobro.</span></p>           <!--Contenido de la carta-->
+
+                        <p class="text">Con el fin de darle cumplimiento a la <span>Ley de 
+                        Habeas Data, LEY ESTATUTARIA 1266 DE 2008 
+                        (Artículo 12.) y 2157 de 2021</span> Le informamos que la obligación, 
+                        con nuestra compañía presenta una factura vencida desde el <span>{{date_late_payment}}</span> 
+                        con <span>{{date_waiting}} dias de mora</span>, y 
+                        un saldo de <span>{{money_number}} ({{money_letter}} {{money_ref}}).</span></p>   
+                        
+                        {% if date_waiting > 30 in date_waiting %}
+                        <p class="text">
+                            Se solicita pago inmediato de la obligacion para evitar 
+                            ser reportado de manera negativa a las centrales de información. 
+                            Para atender tus dudas puedes comunicarte al <span>3006677026</span>
+                        </p>
+                        {% else %}
+                        <p class="text">
+                            Si pasados 15 días calendario, continua la 
+                            mora el dato será reportado de manera negativa 
+                            a las centrales de información. Para atender 
+                            tus dudas puedes comunicarte al <span>3006677026</span>
+                        </p>
+                        {% endif%}
+
+                        <p class="text">Si ya cancelaste tu obligación, haz caso omiso 
+                        a esta comunicación y envía tu comprobante de 
+                        pago para actualizar inmediatamente tu estado de
+                        cuenta al correo <span>cartera@c.gelvezdistribuciones.com.</span></p>
+
+                        <p class="text">Cordialmente,<br>
+                        <span>{{distributor_entity}}.</span></p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>

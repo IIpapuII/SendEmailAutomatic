@@ -1,7 +1,8 @@
-
 from controller.shippingControl  import sendInventorySupplier
 from controller.icomeController import sendIcomesJson
 from controller.shippingParretto import sendParrettoCurrent
+from controller.shippingSeries import sendSeriesInvoiceCurrent
+from controller.shippingCustomerCollection import sendCustomerCollectionMail
 import sys
 
 if __name__ == "__main__":
@@ -12,5 +13,10 @@ if __name__ == "__main__":
             sendIcomesJson()
         elif sys.argv[1] == 'c':
             sendParrettoCurrent()
+        elif sys.argv[1] == 'd':
+            sendSeriesInvoiceCurrent()
+        elif sys.argv[1] == 'e':
+            sendCustomerCollectionMail()
+
     else:
         print('Error')

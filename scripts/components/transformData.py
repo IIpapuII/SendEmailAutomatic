@@ -51,3 +51,32 @@ def exportHTML(nameArchive, **vars):
 def convertNumberToText(numero):
     texto = num2words(numero, lang='es')
     return texto
+
+def formatNumberMoney(number_str = str):
+    floatq = number_str.find(".")
+    number_str_len = len(number_str)
+    number = float(number_str)
+
+    coin = "${:,.2f}".format(number).replace(",","n").replace(".",",").replace("n",".")
+
+    if (number_str_len < 7 and floatq == -1) or (number_str_len < 10 and floatq != -1):
+        ref = "pesos"
+    else:
+        if floatq == -1:
+            num_separated = [int(a) for a in number_str]
+            num_lim = num_separated[-6:]
+        else:
+            number_str_wdot = number_str.replace(".","")
+            num_separated = [int(a) for a in number_str_wdot]
+            num_lim = num_separated[-8:]
+
+    parameter = 0
+
+    for a in range(len(num_lim)):
+        parameter = parameter + num_lim[a]
+
+    if parameter == 0:
+        ref = "de pesos"
+    else:
+        ref = "pesos"
+    return coin, ref

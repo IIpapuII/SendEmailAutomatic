@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office"></html>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <meta name="x-apple-disable-message-reformatting">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta content="telephone=no" name="format-detection">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=K2D:wght@400;700&display=swap" rel="stylesheet">
+        
+        <style> /*Estos determinante de la carta*/
+            .text {
+                font-family: 'K2D', sans-serif;
+                font-size: small;                   /*Estilo del texto*/
+                text-align: justify;
+            }
+
+            span {
+                font-weight: bold;          /*Resaltar texto relevante*/
+            }
+            
+            #box {
+                border: 3px #7B0F10 solid;
+                height: auto;
+                width: 400px;               /*Estilo del cuadro*/
+                border-radius: 10px;
+                padding: 10px 10px 10px 10px;
+            }
+
+            #logo {
+                position: relative;
+                width: 150px;           /*Estilo del logo*/
+                float: right;
+            }
+
+            .data {
+                border: 2px #7B0F10 solid;
+                text-align: center;
+                padding: 5px;
+            }
+
+            .title {
+                font-weight: bold;
+                border: 2px #7B0F10 solid;
+                text-align: center;
+                padding: 5px;
+            }
+            
+            #series {
+                border: 3px #7B0F10 solid;
+                margin: 0 auto;
+                border-radius: 5px;
+            }
+        </style>
+    </head>
+
+    <body> <!--Estilo base de la carta-->
+        
+        <div id="box">
+            <table>
+                <tr>
+                    <td>
+                        <p class="text"><span>{{date_today}}</span></p>
+
+                        <p class="text">Cordial Saludo</p>
+
+                        <p class="text">Para notificar que quedan las siguientes series de facturas y fechas de vencimiento.</p>
+
+                        <p class="text">Cordialmente,<br>
+                        <span>{{distributor_entity}}.</span></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table id="series">         <!--Generacion de series en tabla-->
+                            <tr>
+                                {% for spc_title in range(0, 3): %}  <!--codigo python que determina celdas y columnas-->
+                                    {% set title = header[spc_title] %}
+                                    <td class="title">{{title}}</td>
+                                {% endfor %}
+                            </tr>
+                            
+                            {% for row in range(dataSeries|length): %}
+                            <tr>
+                                {% for column in range(0, 3): %}  <!--codigo python que determina celdas y columnas-->
+                                    {% set list = dataSeries[row] %}
+                                    <td class="data">{{list[column]}}</td>
+                                {% endfor %}
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <a target="_blank">
+                            <img id="logo" src="https://demo.stripocdn.email/content/guids/79874f80-95ea-46a1-a92e-3192ba93e1ec/images/logo.png" alt style="display: block;" width="200">
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>

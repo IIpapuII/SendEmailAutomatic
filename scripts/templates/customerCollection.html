@@ -18,6 +18,8 @@
         <style>
             #title {
                 width: 200px;
+                font-family: 'K2D', sans-serif;
+                font-size: small;                   /*Estilo del titulo*/
             }
 
             .text {
@@ -58,11 +60,11 @@
             <table>
                 <tr>
                     <td id="title">
-                        <p class="text"><span>{{date_today}}</span></p>
+                        <p><span>{{date_today}}</span></p>
                 
-                        <p class="text">Hola</p>
+                        <p>Hola</p>
 
-                        <p class="text"><span>NOMBRE: {{client_name}}<br>
+                        <p><span>NOMBRE: {{client_name}}<br>
                             CC. {{client_cc}}</span></p>
                     </td>
                     <td>
@@ -82,25 +84,26 @@
                         con <span>{{date_waiting}} dias de mora</span>, y 
                         un saldo de <span>{{money_number}} ({{money_letter}} {{money_ref}}).</span></p>   
                         
-                        {% if date_waiting > 30 in date_waiting %}
+                        {% if date_waiting > 30 %}
                         <p class="text">
-                            Se solicita pago inmediato de la obligacion para evitar 
-                            ser reportado de manera negativa a las centrales de información. 
-                            Para atender tus dudas puedes comunicarte al <span>3006677026</span>
+                            Lo invitamos a que coloque al día su obligación, y se 
+                            solicita el <span>pago inmediato</span> para evitar ser reportado de 
+                            manera negativa a las centrales de riesgo. Para atender tus 
+                            dudas puedes comunicarte al <span>3006677026</span>.
                         </p>
                         {% else %}
                         <p class="text">
-                            Si pasados 15 días calendario, continua la 
-                            mora el dato será reportado de manera negativa 
-                            a las centrales de información. Para atender 
-                            tus dudas puedes comunicarte al <span>3006677026</span>
+                            Lo invitamos a que coloque al día su obligación, en caso de que 
+                            su factura continue en mora la información será reportado de 
+                            manera negativa a las centrales de riesgo. Para atender tus dudas 
+                            puedes comunicarte al <span>3006677026</span>.
                         </p>
                         {% endif%}
 
                         <p class="text">Si ya cancelaste tu obligación, haz caso omiso 
                         a esta comunicación y envía tu comprobante de 
                         pago para actualizar inmediatamente tu estado de
-                        cuenta al correo <span>cartera@c.gelvezdistribuciones.com.</span></p>
+                        cuenta al correo <span>cartera@c.gelvezdistribuciones.com</span></p>
 
                         <p class="text">Cordialmente,<br>
                         <span>{{distributor_entity}}.</span></p>
@@ -108,5 +111,11 @@
                 </tr>
             </table>
         </div>
+        <p class="text">
+            Este es un correo enviado por un sistema automático de retroalimentación, 
+            le sugerimos abstenerse de responderlo, para resolver cualquier inquietud o 
+            recibir información adicional, diríjase por favor al correo 
+            <span>cartera@c.gelvezdistribuciones.com</span>
+        </p>
     </body>
 </html>

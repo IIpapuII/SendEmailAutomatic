@@ -20,10 +20,12 @@ def sendCustomerCollectionMail():
         nameClient, ccCLient, endDateCheck, wait, coin, email  = container.transformData()
         coin_format, coin_ref = formatNumberMoney(coin)
         
+        #if email == "":
+        #    email = ""
 
         triggerMail = sendMailEcxel(
             dataJSON[i]['sender'], 
-            email,
+            dataJSON[i]['addresse'],
             "Notificación de Cobro".format(dataJSON[i]['nameHouse'],dateNowFormat()),
             exportHTML('customerCollection.html', date_today = dateNowFormat(), 
                        client_name = nameClient, 
@@ -34,5 +36,7 @@ def sendCustomerCollectionMail():
                        money_letter = convertNumberToText(coin),
                        money_ref = coin_ref,
                        distributor_entity =(dataJSON[i]['nameHouse'])), None)
+        
+        
         
         triggerMail.sendProviderEmail()

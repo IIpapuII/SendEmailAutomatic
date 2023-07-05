@@ -4,6 +4,7 @@ from components.converTextData import ConverText
 from components.dataExtract import extracData
 from components.transformData import dateNowFormat
 from model.modelSQL import Structure
+import pandas as pd
 
 """
 Modulo Encardo de la conexión a la base y generación del archivo de ecxel 
@@ -35,8 +36,8 @@ class CustomerCollectionSend(Structure):
         fecha_diferencia = fecha2 - fecha1
         return fecha_diferencia.days
 
-    def transformData(self):
-        text = ConverText.converTextFormatSQL('customerCollection.sql', self.schemeDB)
+    def transformData(self, ref_array): 
+        text = ConverText.converTextFormatSQL('customerCollection.sql', self.schemeDB, ref_array)
         datas, nameRows = extracData(text)
         row = datas[len(datas)-1]
 

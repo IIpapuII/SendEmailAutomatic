@@ -1,6 +1,7 @@
 from components.sendMail import sendMailEcxel
 from generator.customerCollectionGeneration import CustomerCollectionSend
 from components.transformData import exportHTML, dateNowFormat,convertNumberToText,formatNumberMoney
+import pandas as pd
 import json
 import os
 import jinja2
@@ -11,32 +12,40 @@ def sendCustomerCollectionMail():
     dataJSON = open(os.path.join(os.path.dirname(os.path.abspath('config')),'scripts/config/client.json'), "r")
     dataJSON = json.loads(str(dataJSON.read()))
 
+    df = pd.read_excel(os.path.join(os.path.dirname(os.path.abspath('docs')),'scripts/docs/ClientesDeudores.xlsx'), header=None)
+    df_array = df.values
+
     #Control de Lectura
     for i in dataJSON:
         print(i)
         container = CustomerCollectionSend(schemeDB= dataJSON[i]['ShemeDB'],
             codeHouse= dataJSON[i]['codeHouse'],
             nameHouse= dataJSON[i]['nameHouse'])
-        nameClient, ccCLient, endDateCheck, wait, coin, email  = container.transformData()
-        coin_format, coin_ref = formatNumberMoney(coin)
-        
-        #if email == "":
-        #    email = ""
 
-        triggerMail = sendMailEcxel(
-            dataJSON[i]['sender'], 
-            dataJSON[i]['addresse'],
-            "Notificación de Cobro".format(dataJSON[i]['nameHouse'],dateNowFormat()),
-            exportHTML('customerCollection.html', date_today = dateNowFormat(), 
-                       client_name = nameClient, 
-                       client_cc = ccCLient, 
-                       date_late_payment = endDateCheck,
-                       date_waiting = wait,
-                       money_number = coin_format,
-                       money_letter = convertNumberToText(coin),
-                       money_ref = coin_ref,
-                       distributor_entity =(dataJSON[i]['nameHouse'])), None)
-        
-        
-        
-        triggerMail.sendProviderEmail()
+        for j in range(len(df_array)):
+            nameClient, ccCLient, endDateCheck, wait, coin, email  = container.transformData(df_array[j])
+            coin_format, coin_ref = formatNumberMoney(coin)
+
+            if email == "":
+                email = "supporsistemas@c.gelvezdistribuciones.com"
+
+            triggerMail = sendMailEcxel(
+                dataJSON[i]['sender'], 
+                "supporsistemas@c.gelvezdistribuciones.com",
+                "Notificación de Cobro".format(dataJSON[i]['nameHouse'],dateNowFormat()),
+                exportHTML('customerCollection.html', date_today = dateNowFormat(), 
+                        client_name = nameClient, 
+                        client_cc = ccCLient, 
+                        date_late_payment = endDateCheck,
+                        date_waiting = wait,
+                        money_number = coin_format,
+                        money_letter = convertNumberToText(coin),
+                        money_ref = coin_ref,
+                        distributor_entity =(dataJSON[i]['nameHouse'])), None)
+            
+
+            if coin_format == "$0,00":
+                print("EL cliente no tiene saldo pendiente")
+
+            else:
+                triggerMail.sendProviderEmail()

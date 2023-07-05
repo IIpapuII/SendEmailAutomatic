@@ -28,7 +28,7 @@ def sendSeriesInvoiceCurrent():
             )
         for fields in range(len(data)):
             row = data[fields]
-            if row[1] > 1000 and row[2] > 10:
+            if row[1] > 1000 or row[2] > 10:
                 print("No fue enviado el mensaje")
             else:
                 triggerMail.sendProviderEmail()

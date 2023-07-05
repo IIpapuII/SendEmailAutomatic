@@ -1,6 +1,7 @@
 from email.message import EmailMessage
 import smtplib
 import os
+from .dataExtract import getFilePath
 from datetime import datetime
 from dotenv import load_dotenv 
 """ Modulo Encarado de Enviar correos"""
@@ -36,7 +37,7 @@ class sendMailEcxel():
         
         email.set_content(self.menssage, subtype= 'html')
         if self.nameArchive != None:
-            with open(os.path.join(os.path.dirname(os.path.abspath('docs')),'scripts/docs/'+self.nameArchive),'rb') as f:
+            with open(getFilePath('docs',self.nameArchive),'rb') as f:
                 email.add_attachment(
                     f.read(),
                     filename = self.nameArchive,

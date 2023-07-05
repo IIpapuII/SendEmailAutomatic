@@ -42,7 +42,10 @@ def dateNowFormat():
     return date.strftime("%m/%d/%Y")
 
 def exportHTML(nameArchive, **vars):
-    loader = FileSystemLoader('scripts/templates')
+    currentDir = os.path.dirname(os.path.abspath(__file__))
+    templateDir = os.path.join(currentDir,'..',"templates")
+    print(templateDir)
+    loader = FileSystemLoader(templateDir)
     env = Environment(loader= loader)
     template = env.get_template(nameArchive)
     body = template.render(**vars)

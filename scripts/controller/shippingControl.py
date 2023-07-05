@@ -2,14 +2,14 @@ from components  import sendMail
 from components.sendMail import sendMailEcxel
 from generator.dataGeneration import ProveedoresSend
 from components.transformData import exportHTML, dateNowHana, dateNowFormat
+from components.dataExtract import extracJSON
 import json
 import os
 
 def sendInventorySupplier():
     """ Modulo Encargado de Gestionar la lectura del Json Junto con el Envio de los archivos Generados """
 
-    dataJSON = open(os.path.join(os.path.dirname(os.path.abspath('config')),'SendEmailAutomatic/scripts/config/data.json'), "r")
-    dataJSON = json.loads(str(dataJSON.read()))
+    dataJSON = extracJSON('data.json')
     #Contron de Lectura
     for i in dataJSON:
         print(i)

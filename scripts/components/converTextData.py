@@ -1,5 +1,5 @@
 import os
-
+from .dataExtract import getFilePath
 
 class ConverText:
     """Class element utils
@@ -11,17 +11,17 @@ class ConverText:
     """
     
     def converTextSQL(fileNameSQL):
-        querySQL = open(os.path.join(os.path.dirname(os.path.abspath('script')),'scripts/query/'+ fileNameSQL))
+        querySQL = open(getFilePath('query',fileNameSQL))
         return querySQL.read()
 
     def converTextFormatSQL(fileNameSQL,*vars):
-        querySQL = open(os.path.join(os.path.dirname(os.path.abspath('script')),'scripts/query/'+ fileNameSQL))
+        querySQL = open(getFilePath('query',fileNameSQL))
         querySQL = str(querySQL.read()).format(*vars)
         return querySQL
     
     def ConverMenssajeHTML(fileNameHTML, *vars):
         menssage = ''
-        text = open (os.path.join(os.path.dirname(os.path.abspath('templates')), 'scripts/templates/'+ fileNameHTML),'r')
+        text = open (getFilePath('templates',fileNameHTML),'r')
         menssage = str(text.read())
         menssage = menssage.format(*vars)
         menssage = menssage.replace('#','{')

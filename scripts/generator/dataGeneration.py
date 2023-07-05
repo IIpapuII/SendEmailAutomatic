@@ -5,7 +5,7 @@ import pandas as pd
 import openpyxl
 from model.conectDB import conect
 from components.converTextData import ConverText
-from components.dataExtract import extracData
+from components.dataExtract import extracData, getFilePath
 from model.modelSQL import Structure, Proveedor
 
 """
@@ -43,7 +43,7 @@ class ProveedoresSend(Structure):
         
         hoja['R{}'.format(len(data)+2)] = Data_2['TotalUltimoPrecioCompra'].sum()
         
-        wb.save(os.path.join(os.path.dirname(os.path.abspath('docs')),'scripts/docs/'+self.nameArchivo()))
+        wb.save(getFilePath('docs',self.nameArchivo()))
 
     def nameArchivo(self):
         return 'Iventario {}.xlsx'.format(self.nameHouse)

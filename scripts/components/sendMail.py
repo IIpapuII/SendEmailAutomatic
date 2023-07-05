@@ -14,8 +14,8 @@ class sendMailEcxel():
         self.nameArchive = nameArchive
         #self.affair = 'Inventario de {} a corte de {}'
         self.affair = affair
-        self.serverSMTP = "smtp.gmail.com"
-        self.portServerSMTP = 465
+        self.serverSMTP = "smtp-mail.outlook.com"
+        self.portServerSMTP = 587
 
     
     #Getters  del objeto sendMail
@@ -44,7 +44,8 @@ class sendMailEcxel():
                     subtype = "vnd.ms-excel"
                 )
         
-        smtp = smtplib.SMTP_SSL(self.serverSMTP, self.portServerSMTP)
+        smtp = smtplib.SMTP(self.serverSMTP, self.portServerSMTP)
+        smtp.starttls()
         smtp.login(self.sender, os.getenv('PASSWORDEMAIL'))
         smtp.sendmail(self.sender,
                       self.addressee,

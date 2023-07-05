@@ -1,34 +1,93 @@
 # SendEmailAutomatic
 Envió de información de manera automática mediante la estración de consulta de Sap Bussiones One 
 ~~~
-SendEmailAutomatic
-│   .gitignore
-│   LICENSE
-│   README.md
-│   requirements.txt
-│   serverConfig.bash
-│   setup.py
-│
-├───docs
-└───scripts
-    │   .env
-    │   data.json
-    │   dataGeneration.py
-    │   main.py
-    │   sendMail.py
-    │   shippingControl.py
-    │   __init__.py
-    │
-    ├───query
-    │       Iventory.sql
-    │
-    ├───templates
-    │       menssage.html
-    │
-    └───__pycache__
-            dataGeneration.cpython-39.pyc
-            sendMail.cpython-39.pyc
-            shippingControl.cpython-39.pyc
+└── SendEmailAutomatic
+    ├── LICENSE
+    ├── markdown
+    │   └── Diagrama.png
+    ├── README.md
+    ├── requirements.txt
+    ├── scripts
+    │   ├── components
+    │   │   ├── converTextData.py
+    │   │   ├── dataExtract.py
+    │   │   ├── __init__.py
+    │   │   ├── __pycache__
+    │   │   │   ├── converTextData.cpython-311.pyc
+    │   │   │   ├── dataExtract.cpython-311.pyc
+    │   │   │   ├── __init__.cpython-311.pyc
+    │   │   │   ├── __init__.cpython-39.pyc
+    │   │   │   ├── sendMail.cpython-311.pyc
+    │   │   │   ├── sendMail.cpython-39.pyc
+    │   │   │   └── transformData.cpython-311.pyc
+    │   │   ├── sendMail.py
+    │   │   └── transformData.py
+    │   ├── config
+    │   │   ├── client.json
+    │   │   ├── counter.json
+    │   │   ├── data.json
+    │   │   └── icomessend.json
+    │   ├── controller
+    │   │   ├── icomeController.py
+    │   │   ├── __init__.py
+    │   │   ├── __pycache__
+    │   │   │   ├── icomeController.cpython-311.pyc
+    │   │   │   ├── __init__.cpython-311.pyc
+    │   │   │   ├── __init__.cpython-39.pyc
+    │   │   │   ├── shippingControl.cpython-311.pyc
+    │   │   │   ├── shippingControl.cpython-39.pyc
+    │   │   │   ├── shippingCustomerCollection.cpython-311.pyc
+    │   │   │   ├── shippingParretto.cpython-311.pyc
+    │   │   │   └── shippingSeries.cpython-311.pyc
+    │   │   ├── shippingControl.py
+    │   │   ├── shippingCustomerCollection.py
+    │   │   ├── shippingParretto.py
+    │   │   └── shippingSeries.py
+    │   ├── docs
+    │   │   └── Iventario UNILEVER ANDINA COLOMBIA LTDAss.xlsx
+    │   ├── generator
+    │   │   ├── a.py
+    │   │   ├── customerCollectionGeneration.py
+    │   │   ├── dataGeneration.py
+    │   │   ├── generateCustomerCollection.py
+    │   │   ├── generateParretto.py
+    │   │   ├── generateSeries.py
+    │   │   ├── icomeGenerateDate.py
+    │   │   ├── __init__.py
+    │   │   ├── parrettoGeneration.py
+    │   │   ├── __pycache__
+    │   │   │   ├── customerCollectionGeneration.cpython-311.pyc
+    │   │   │   ├── dataGeneration.cpython-311.pyc
+    │   │   │   ├── icomeGenerateDate.cpython-311.pyc
+    │   │   │   ├── __init__.cpython-311.pyc
+    │   │   │   ├── parrettoGeneration.cpython-311.pyc
+    │   │   │   └── seriesGeneration.cpython-311.pyc
+    │   │   └── seriesGeneration.py
+    │   ├── __init__.py
+    │   ├── main.py
+    │   ├── model
+    │   │   ├── conectDB.py
+    │   │   ├── __init__.py
+    │   │   ├── modelSQL.py
+    │   │   └── __pycache__
+    │   │       ├── conectDB.cpython-311.pyc
+    │   │       ├── __init__.cpython-311.pyc
+    │   │       └── modelSQL.cpython-311.pyc
+    │   ├── query
+    │   │   ├── customerCollection.sql
+    │   │   ├── income.sql
+    │   │   ├── Iventory.sql
+    │   │   ├── parrettoventas.sql
+    │   │   └── seriesInvoice.sql
+    │   └── templates
+    │       ├── customerCollection.html
+    │       ├── goodsReceipt.html
+    │       ├── logo (1).png
+    │       ├── massiveParretto.html
+    │       ├── menssage.html
+    │       └── seriesNotification.html
+    ├── serverConfig.bash
+    └── setup.py
 ~~~
 El uso logico para el envio se observa de la siguiente forma.
 ![Draw](/SendEmailAutomatic/markdown/Diagrama.png)

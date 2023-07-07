@@ -46,6 +46,6 @@ class ProveedoresSend(Structure):
         wb.save(getFilePath('docs',self.nameArchivo()))
 
     def nameArchivo(self):
-        return 'Iventario {}.xlsx'.format(self.nameHouse)
+        return 'Inventario {}.xlsx'.format(self.nameHouse)
 
     

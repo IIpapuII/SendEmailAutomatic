@@ -24,7 +24,8 @@ def sendInventorySupplier():
             "Inventario de {0} a corte de {1}".format(dataJSON[i]['nameHouse'],dateNowFormat()),
             exportHTML('menssage.html', NameHouse = dataJSON[i]['nameHouse'], 
                        listWhareHouse = dataJSON[i]['nameCellers']),
-            triggerData.nameArchivo()
+            triggerData.nameArchivo(),
+            dataJSON[i]['password']
             )
         triggerData.transformData()
         print('Se Genero: ', triggerData.nameHouse)

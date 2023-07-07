@@ -62,16 +62,13 @@ def formatNumberMoney(number_str = str):
 
     coin = "${:,.2f}".format(number).replace(",","n").replace(".",",").replace("n",".")
 
-    if (number_str_len < 7 and floatq == -1) or (number_str_len < 10 and floatq != -1):
-        ref = "pesos"
+    if floatq == -1:
+        num_separated = [int(a) for a in number_str]
+        num_lim = num_separated[-6:]
     else:
-        if floatq == -1:
-            num_separated = [int(a) for a in number_str]
-            num_lim = num_separated[-6:]
-        else:
-            number_str_wdot = number_str.replace(".","")
-            num_separated = [int(a) for a in number_str_wdot]
-            num_lim = num_separated[-8:]
+        number_str_wdot = number_str.replace(".","")
+        num_separated = [int(a) for a in number_str_wdot]
+        num_lim = num_separated[-8:]
 
     parameter = 0
 

@@ -1,23 +1,8 @@
-c = 1002000
-b = str(c)
-parameter = 0
+import pandas as pd
+import os
 
-coin = "${:,.2f}".format(c).replace(",","n").replace(".",",").replace("n",".")
+df = pd.read_excel(os.path.join(os.path.dirname(os.path.abspath('scripts')),'SendEmailAutomatic/scripts/docs/ClientesDeudores.xlsx'), header=None)
+df_array = df.values
 
-num_separated = [a for a in b]
-
-if len(num_separated) <= 6:
-    ref = "pesos"
-else:
-    num_lim = num_separated[-6:]
-
-    for a in range(len(num_lim)):
-        parameter = parameter + int(num_lim[a])
-
-    if parameter == 0:
-        ref = "de pesos"
-    else:
-        ref = "pesos"
-
-print(coin)
-print(ref)
+for j in range(len(df_array)):
+    print(df_array[j], "        ", j)

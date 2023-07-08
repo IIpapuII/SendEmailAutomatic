@@ -55,7 +55,8 @@ def convertNumberToText(numero):
     texto = num2words(numero, lang='es')
     return texto
 
-def formatNumberMoney(number_str = str):
+def formatNumberMoney(number_str: str):
+    number_str = str(number_str)
     number_int = int(number_str)
     parameter = 0
 

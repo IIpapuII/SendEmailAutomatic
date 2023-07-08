@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 load_dotenv()
 class sendMailEcxel():
     """ Clase Encargada de Gestinar el envio del correo a los proveedores"""
-    def __init__(self,sender: str, addressee: str, affair:str, menssage:str, nameArchive:str):
+    def __init__(self,sender: str, addressee: str, affair:str, menssage:str, nameArchive:str, password:str):
         self._sender = sender
         self.addressee = addressee
         self.menssage = menssage
@@ -17,6 +17,7 @@ class sendMailEcxel():
         self.affair = affair
         self.serverSMTP = "smtp-mail.outlook.com"
         self.portServerSMTP = 587
+        self.password = password
 
     
     #Getters  del objeto sendMail
@@ -47,7 +48,7 @@ class sendMailEcxel():
         
         smtp = smtplib.SMTP(self.serverSMTP, self.portServerSMTP)
         smtp.starttls()
-        smtp.login(self.sender, os.getenv('PASSWORDEMAIL'))
+        smtp.login(self.sender, self.password)
         smtp.sendmail(self.sender,
                       self.addressee,
                       email.as_string())

@@ -39,7 +39,7 @@ def sendCustomerCollectionMail():
 
                 triggerMail = sendMailEcxel(
                     dataJSON[i]['sender'], 
-                    "supporsistemas@c.gelvezdistribuciones.com",
+                    "sistemas@gelvezdistribuciones.com",
                     "Notificación de Cobro".format(dataJSON[i]['nameHouse'],dateNowFormat()),
                     exportHTML('customerCollection.html', date_today = dateNowFormat(), 
                             client_name = nameClient, 
@@ -52,3 +52,6 @@ def sendCustomerCollectionMail():
                             distributor_entity =(dataJSON[i]['nameHouse'])), None)
 
                 triggerMail.sendProviderEmail()
+
+            if j == len(df_array)-1:
+                break

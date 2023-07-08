@@ -1,5 +1,5 @@
-import os
 from .dataExtract import getFilePath
+import pandas as pd
 
 class ConverText:
     """Class element utils
@@ -30,7 +30,11 @@ class ConverText:
 
     def ConverAffairText(menssage, *vars):
         text = menssage.format(*vars)
-        return menssage
+        return text
+    
+    def ConverDataXlsx(Descripcion, data, nameAchive ):
+        df = pd.DataFrame(data, columns= Descripcion  )
+        df.to_excel(getFilePath('docs', nameAchive),index=False)
     
     
 

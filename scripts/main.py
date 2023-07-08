@@ -3,6 +3,7 @@ from controller.icomeController import sendIcomesJson
 from controller.shippingParretto import sendParrettoCurrent
 from controller.shippingSeries import sendSeriesInvoiceCurrent
 from controller.shippingCustomerCollection import sendCustomerCollectionMail
+from controller.test import textExtraction
 import sys
 
 if __name__ == "__main__":
@@ -17,6 +18,8 @@ if __name__ == "__main__":
             sendSeriesInvoiceCurrent()
         elif sys.argv[1] == 'e':
             sendCustomerCollectionMail()
+        elif sys.argv[1] == 'f':
+            textExtraction()
 
     else:
         print('Error')

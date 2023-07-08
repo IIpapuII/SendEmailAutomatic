@@ -28,6 +28,18 @@
                 text-align: justify;
             }
 
+            #message_important {
+                font-weight: 700;
+                font-size: larger;
+                text-align: center;
+            }
+
+            #container_box_message {
+                display: flex;
+                margin: auto;
+                width: 800px;
+            }
+
             span {
                 font-weight: bold;          /*Resaltar texto*/
             }
@@ -38,6 +50,8 @@
                 width: 400px;           /*Estilo del borde*/
                 border-radius: 10px;
                 padding: 10px 10px 10px 10px;
+                display: flex;
+                margin: auto;
 
                 background-image: url('https://qivblu.stripocdn.email/content/guids/CABINET_bf53c089fa1d7edca832c660953b1053aaf8c792fb9e25e69404d65675690d1f/images/svg_kLB.png');
                 background-repeat: no-repeat;
@@ -111,11 +125,13 @@
                 </tr>
             </table>
         </div>
-        <p class="text">
-            Este es un correo enviado por un sistema automático de retroalimentación, 
-            le sugerimos abstenerse de responderlo, para resolver cualquier inquietud o 
-            recibir información adicional, diríjase por favor al correo 
-            <span>cartera@c.gelvezdistribuciones.com</span>
-        </p>
+        <div id="container_box_message">
+            <p class="text" id="message_important">
+                Este es un correo enviado por un sistema automático de retroalimentación, 
+                le sugerimos abstenerse de responderlo, para resolver cualquier inquietud o 
+                recibir información adicional, diríjase por favor al correo 
+                <span>cartera@c.gelvezdistribuciones.com</span>
+            </p>
+        </div>
     </body>
 </html>

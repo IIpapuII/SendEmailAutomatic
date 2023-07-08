@@ -23,29 +23,32 @@ def sendCustomerCollectionMail():
             nameHouse= dataJSON[i]['nameHouse'])
 
         for j in range(len(df_array)):
-            nameClient, ccCLient, endDateCheck, wait, coin, email  = container.transformData(df_array[j])
-            coin_format, coin_ref = formatNumberMoney(coin)
+            nameClient, ccCLient, endDateCheck, wait, coin, email, time_pay  = container.transformData(df_array[j])
 
             if email == "":
                 email = "supporsistemas@c.gelvezdistribuciones.com"
-
-            triggerMail = sendMailEcxel(
-                dataJSON[i]['sender'], 
-                "supporsistemas@c.gelvezdistribuciones.com",
-                "Notificación de Cobro".format(dataJSON[i]['nameHouse'],dateNowFormat()),
-                exportHTML('customerCollection.html', date_today = dateNowFormat(), 
-                        client_name = nameClient, 
-                        client_cc = ccCLient, 
-                        date_late_payment = endDateCheck,
-                        date_waiting = wait,
-                        money_number = coin_format,
-                        money_letter = convertNumberToText(coin),
-                        money_ref = coin_ref,
-                        distributor_entity =(dataJSON[i]['nameHouse'])), None)
             
-
-            if coin_format == "$0,00":
+            if coin <= 0:
                 print("EL cliente no tiene saldo pendiente")
-
+                print(ccCLient, "", nameClient)
+            elif time_pay >= wait:
+                print("EL cliente aun no tiene la factura vencida")
+                print(ccCLient, "", nameClient)                
             else:
+                coin_format, coin_ref = formatNumberMoney(coin)
+
+                triggerMail = sendMailEcxel(
+                    dataJSON[i]['sender'], 
+                    "supporsistemas@c.gelvezdistribuciones.com",
+                    "Notificación de Cobro".format(dataJSON[i]['nameHouse'],dateNowFormat()),
+                    exportHTML('customerCollection.html', date_today = dateNowFormat(), 
+                            client_name = nameClient, 
+                            client_cc = ccCLient, 
+                            date_late_payment = endDateCheck,
+                            date_waiting = wait,
+                            money_number = coin_format,
+                            money_letter = convertNumberToText(coin),
+                            money_ref = coin_ref,
+                            distributor_entity =(dataJSON[i]['nameHouse'])), None)
+
                 triggerMail.sendProviderEmail()

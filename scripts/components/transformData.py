@@ -56,27 +56,24 @@ def convertNumberToText(numero):
     return texto
 
 def formatNumberMoney(number_str = str):
-    floatq = number_str.find(".")
-    number_str_len = len(number_str)
-    number = float(number_str)
-
-    coin = "${:,.2f}".format(number).replace(",","n").replace(".",",").replace("n",".")
-
-    if floatq == -1:
-        num_separated = [int(a) for a in number_str]
-        num_lim = num_separated[-6:]
-    else:
-        number_str_wdot = number_str.replace(".","")
-        num_separated = [int(a) for a in number_str_wdot]
-        num_lim = num_separated[-8:]
-
+    number_int = int(number_str)
     parameter = 0
 
-    for a in range(len(num_lim)):
-        parameter = parameter + num_lim[a]
+    coin = "${:,.2f}".format(number_int).replace(",","n").replace(".",",").replace("n",".")
 
-    if parameter == 0:
-        ref = "de pesos"
-    else:
+    num_separated = [a for a in number_str]
+
+    if len(num_separated) <= 6:
         ref = "pesos"
+    else:
+        num_lim = num_separated[-6:]
+
+        for a in range(len(num_lim)):
+            parameter = parameter + int(num_lim[a])
+
+        if parameter == 0:
+            ref = "de pesos"
+        else:
+            ref = "pesos"
+            
     return coin, ref

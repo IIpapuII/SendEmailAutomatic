@@ -19,7 +19,8 @@ def sendIcomesJson():
             dataJSON[i]['addresse'],
             'Entrada de Mercancia',
             exportHTML('goodsReceipt.html',Date=dateNowHana()),
-            'IngresoMercancia.xlsx'
+            'IngresoMercancia.xlsx',
+            dataJSON[i]['password']
         )
         if triggerData.controllerIcome() == False:
             print('No Se envia ')

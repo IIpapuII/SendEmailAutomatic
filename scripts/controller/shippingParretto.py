@@ -24,7 +24,8 @@ def sendParrettoCurrent():
             "Sabana de Ventas para Liquidaciones".format(dataJSON[i]['nameHouse'],dateNowFormat()),
             exportHTML('massiveParretto.html', date_today = dateNowFormat(), 
                        distributor_entity = dataJSON[i]['nameHouse']),
-            triggerData.nameArchivo()
+            triggerData.nameArchivo(),
+            dataJSON[i]['password']
             )
         triggerData.transformData()
         print('Se Genero: ', triggerData.nameHouse)

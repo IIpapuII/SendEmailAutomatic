@@ -27,7 +27,7 @@ class CustomerCollectionSend(Structure):
         self.nameHouse = nameHouse
         self.codeHouse = codeHouse
     
-    def date(self, ref = str):
+    def date(self, ref: str):
         fecha1 = datetime.strptime(ref, '%d/%m/%Y')
         fecha1.strftime('%d/%m/%Y')
         fecha2 = datetime.now()
@@ -44,19 +44,12 @@ class CustomerCollectionSend(Structure):
 
         nameClient = str(row[1])
         ccCLient = str(row[2])
+        coin = int(row[4])
         endDateCheck = str(row[5])
         wait = self.date(endDateCheck)
-        coin = int(row[4])
         email = str(row[6])
-        time_pay = str(row[7])
+        time_pay = int(row[7])
 
-        if time_pay.find(" Días") > 0:
-            time_pay = time_pay.replace(" Días","")
-            time_pay = int(time_pay)
-        elif time_pay.find(" Dia") > 0:
-            time_pay = time_pay.replace(" Dia","")
-            time_pay = int(time_pay)
-        else:
-            time_pay = 0
+        
 
         return nameClient, ccCLient, endDateCheck, wait, coin, email, time_pay

@@ -1,5 +1,5 @@
 SELECT T0."CardCode", T0."CardName", T0."LicTradNum", T0."AliasName", T0."Balance", TO_VARCHAR(T1."DocDueDate",'DD/MM/YYYY') AS "Fecha", 
-T0."E_Mail", T0."GroupNum",
+T0."E_Mail", 
 CASE T0."GroupNum"
 WHEN -1 THEN -1
 WHEN 1 THEN 30
@@ -18,6 +18,6 @@ WHEN 14 THEN 25
 ELSE -1
 END AS "Condicion de pago"
 FROM {0}.OCRD T0
-INNER JOIN {0}.ORIN T1 ON T0."CardCode" = T1."CardCode"
+INNER JOIN {0}.OINV T1 ON T0."CardCode" = T1."CardCode"
 WHERE T0."CardCode" = {1} --El WHERE no funciona con este codigo
-ORDER BY T1."DocDueDate" 
+ORDER BY T1."DocDueDate"

@@ -32,7 +32,7 @@ def sendInventorySupplier():
             "Inventario y Ventas de {0} a corte de {1}".format(dataJSON[i]['nameHouse'],dateNowFormat()),
             exportHTML('menssage.html', NameHouse = dataJSON[i]['nameHouse'], 
                        listWhareHouse = dataJSON[i]['nameCellers']),
-            [triggerData.nameArchivo(),'ArchiveVentas.xlsx'],
+            [triggerData.nameArchivo(),'SabanaDeVentas.xlsx'],
             dataJSON[i]['password']
             )
         triggerSales.Controlle()

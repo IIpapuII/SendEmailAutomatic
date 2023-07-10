@@ -19,6 +19,6 @@ class ParettoSales(Structure):
         text = ConverText.converTextFormatSQL('ParretoSales.sql',
                                               self.schemeDB, self.wareHouse, self.initDate, self.endDate, self.wareCellers)
         data , description = extracData(text)
-        ConverText.ConverDataXlsx(description, data, 'ArchiveVentas.xlsx')
+        ConverText.ConverDataXlsx(description, data, 'SabanaDeVentas.xlsx')
 
 

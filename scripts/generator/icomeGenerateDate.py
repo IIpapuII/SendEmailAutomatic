@@ -1,5 +1,5 @@
 
-from components.dataExtract import extracData
+from components.dataExtract import extracData, getFilePath
 from components.converTextData import ConverText
 from components.transformData import dataFusion, exportExcel
 from model.modelSQL import Structure
@@ -17,5 +17,5 @@ class SendIcomes(Structure):
         if not data:
             return False
         else:
-            dataFusion(data,description).to_excel(os.path.join(os.path.dirname(os.path.abspath('docs')),'scripts/docs/'+'IngresoMercancia.xlsx'))
+            dataFusion(data,description).to_excel(getFilePath('docs','IngresoMercancia.xlsx'), index=None)
             return True

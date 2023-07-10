@@ -31,7 +31,7 @@ def sendCustomerCollectionMail():
             if coin <= 0:
                 print("EL cliente no tiene saldo pendiente")
                 print(ccCLient, "", nameClient)
-            elif time_pay >= wait:
+            elif wait <= time_pay:
                 print("EL cliente aun no tiene la factura vencida")
                 print(ccCLient, "", nameClient)                
             else:
@@ -39,7 +39,7 @@ def sendCustomerCollectionMail():
 
                 triggerMail = sendMailEcxel(
                     dataJSON[i]['sender'], 
-                    "sistemas@gelvezdistribuciones.com",
+                    email,
                     "Notificación de Cobro".format(dataJSON[i]['nameHouse'],dateNowFormat()),
                     exportHTML('customerCollection.html', date_today = dateNowFormat(), 
                             client_name = nameClient, 
@@ -49,9 +49,8 @@ def sendCustomerCollectionMail():
                             money_number = coin_format,
                             money_letter = convertNumberToText(coin),
                             money_ref = coin_ref,
-                            distributor_entity =(dataJSON[i]['nameHouse'])), None)
+                            distributor_entity =(dataJSON[i]['nameHouse'])), 
+                    None, 
+                    dataJSON[i]['password'])
 
                 triggerMail.sendProviderEmail()
-
-            if j == len(df_array)-1:
-                break

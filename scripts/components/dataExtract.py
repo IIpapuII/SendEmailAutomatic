@@ -8,6 +8,15 @@ def getFilePath(folderName, fileName):
     filePath = os.path.join(currentDir,'..', folderName, fileName)
     return filePath
 
+def getFilePathsEmail(folderName:str, fileNames:list):
+    """Relative path modeler mutiple"""
+    currentDir = os.path.dirname(os.path.abspath(__file__))
+    filePaths = []
+    for fileName in fileNames:
+        filePath = os.path.join(currentDir,'..', folderName, fileName)
+        filePaths.append(filePath)
+    return filePaths
+
 #SQL data extraction component using string query
 def extracData(text):
     coon = conect()

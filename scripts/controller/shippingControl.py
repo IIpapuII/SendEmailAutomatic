@@ -1,10 +1,10 @@
 from components  import sendMail
-from components.sendMail import sendMailEcxel
+from components.sendMail import sendMailEcxelMultiple
 from generator.dataGeneration import ProveedoresSend
-from components.transformData import exportHTML, dateNowHana, dateNowFormat
+from generator.ParretoGenerationSales import ParettoSales
+from components.transformData import exportHTML, dateNowHana, dateNowFormat, dateFirstDay
 from components.dataExtract import extracJSON
-import json
-import os
+
 
 def sendInventorySupplier():
     """ Modulo Encargado de Gestionar la lectura del Json Junto con el Envio de los archivos Generados """
@@ -18,15 +18,24 @@ def sendInventorySupplier():
             wareHouse= dataJSON[i]['codeCellers'],
             codeHouse= dataJSON[i]['codeHouse'],
             nameHouse= dataJSON[i]['nameHouse'])
-        triggerMail = sendMailEcxel(
+        triggerSales = ParettoSales(
+            schemeDB= dataJSON[i]['ShemeDB'],
+            wareHouse= dataJSON[i]['codeHouse'],
+            initDate= dateFirstDay(),
+            endDate= dateNowHana(),
+            wareCellers= dataJSON[i]['codeCellers']
+
+        )
+        triggerMail = sendMailEcxelMultiple(
             dataJSON[i]['sender'],
             dataJSON[i]['addresse'],
-            "Inventario de {0} a corte de {1}".format(dataJSON[i]['nameHouse'],dateNowFormat()),
+            "Inventario y Ventas de {0} a corte de {1}".format(dataJSON[i]['nameHouse'],dateNowFormat()),
             exportHTML('menssage.html', NameHouse = dataJSON[i]['nameHouse'], 
                        listWhareHouse = dataJSON[i]['nameCellers']),
-            triggerData.nameArchivo(),
+            [triggerData.nameArchivo(),'SabanaDeVentas.xlsx'],
             dataJSON[i]['password']
             )
+        triggerSales.Controlle()
         triggerData.transformData()
         print('Se Genero: ', triggerData.nameHouse)
         triggerMail.sendProviderEmail()

@@ -150,6 +150,7 @@ LEFT JOIN (
 WHERE
 	T1."DocDate" BETWEEN '{2}' AND '{3}'
 	AND T8."ItmsGrpCod" IN ({1})
+	AND T2."WhsCode" IN ({4})
 	--AND T1."DocNum" = '10078561'
 
 UNION ALL
@@ -306,6 +307,7 @@ LEFT JOIN (
 WHERE
 	T1."DocDate" BETWEEN '{2}' AND '{3}'
 	AND T8."ItmsGrpCod" IN ({1})
+	AND T2."WhsCode" IN ({4})
 	--AND T1."DocNum" = '10078561'
 /*ORDER BY
 	"FechaDocumento"*/

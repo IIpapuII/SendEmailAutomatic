@@ -1,6 +1,7 @@
 import pandas as pd
 import os 
 from datetime import datetime
+import datetime as td
 from jinja2 import Environment, FileSystemLoader
 from num2words import num2words
 
@@ -34,8 +35,15 @@ def dateNowPC():
     return date.strftime("%d/%m/%Y")
 
 def dateNowHana():
+    "Fecha actual para formato SQL HANA"
     date = datetime.now()
     return date.strftime("%Y%m%d")
+
+def dateFirstDay():
+    "Fecha del primer dia del mes SQL HANA"
+    dateNow = td.date.today()
+    firstDay = dateNow.replace(day= 1)
+    return firstDay.strftime("%Y%m%d")
 
 def dateNowFormat():
     date = datetime.now()

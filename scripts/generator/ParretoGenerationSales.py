@@ -10,14 +10,15 @@ class ParettoSales(Structure):
     def __init__(self, schemeDB, 
                  wareHouse, 
                  initDate=None, 
-                 endDate=None, ) -> None:
+                 endDate=None,
+                 wareCellers = None ) -> None:
         super().__init__(schemeDB, wareHouse, initDate, endDate)
+        self.wareCellers = wareCellers
     
     def Controlle(self):
         text = ConverText.converTextFormatSQL('ParretoSales.sql',
-                                              self.schemeDB, self.wareHouse, self.initDate, self.endDate)
+                                              self.schemeDB, self.wareHouse, self.initDate, self.endDate, self.wareCellers)
         data , description = extracData(text)
-        print(data[0])
         ConverText.ConverDataXlsx(description, data, 'ArchiveVentas.xlsx')
 
 

@@ -1,33 +1,26 @@
-from components  import sendMail
 from components.sendMail import sendMailEcxel
 from generator.parrettoGeneration import ParrettoSend
-from components.transformData import exportHTML, dateNowHana, dateNowFormat
-import json
-import os
+from components.transformData import exportHTML, dateNowFormat
+from components.dataExtract import extracJSON
+
 
 def sendParrettoCurrent():
     """ Modulo Encargado de Gestionar la lectura del Json Junto con el Envio de los archivos Generados """
 
-    dataJSON = open(os.path.join(os.path.dirname(os.path.abspath('config')),'scripts/config/data.json'), "r")
-    dataJSON = json.loads(str(dataJSON.read()))
-    #Contron de Lectura
+    dataJSON = extracJSON('parreto.json')
     for i in dataJSON:
         print(i)
-        triggerData = ParrettoSend (   
-            schemeDB= dataJSON[i]['ShemeDB'],
-            wareHouse= dataJSON[i]['codeCellers'],
-            codeHouse= dataJSON[i]['codeHouse'],
-            nameHouse= dataJSON[i]['nameHouse'])
+        triggerData = ParrettoSend (schemeDB= dataJSON[i]['schemeDB'], wareHouse= dataJSON[i]['WareHouse'])
+        
         triggerMail = sendMailEcxel(
             dataJSON[i]['sender'],
             dataJSON[i]['addresse'],
-            "Sabana de Ventas para Liquidaciones".format(dataJSON[i]['nameHouse'],dateNowFormat()),
-            exportHTML('massiveParretto.html', date_today = dateNowFormat(), 
-                       distributor_entity = dataJSON[i]['nameHouse']),
-            triggerData.nameArchivo(),
+            "Sabana de Ventas para Liquidaciones," + dateNowFormat(),
+            exportHTML('massiveParretto.html', date_today = dateNowFormat(), distributor_entity = dataJSON[i]['nameHouse']),
+            'Parretto de Ventas.xlsx',
             dataJSON[i]['password']
             )
         triggerData.transformData()
-        print('Se Genero: ', triggerData.nameHouse)
+        print('Se Genero: Sabana de ventas')
         triggerMail.sendProviderEmail()
         

@@ -1,5 +1,5 @@
-from generator.ParretoGenerationSales import ParettoSales
+from generator.parrettoGeneration import ParrettoSend
 
 def textExtraction():
-    pruebas = ParettoSales("HBTGELVEZ_CUCUTA", 154, '20230701','20230708')
-    pruebas.Controlle()
+    pruebas = ParrettoSend("HBTGELVEZ_CUCUTA")
+    pruebas.transformData()

@@ -12,37 +12,21 @@ from model.modelSQL import Structure
 Modulo Encardo de la conexión a la base y generación del archivo de ecxel 
 """
 coon = conect()
-class ParrettoSend(Structure):
+class ParrettoSend():
     """
-    Se encarga de generar el objeto del provedor junto con el iventario que maneja
+    Se encarga de generar el proceso de envio de la sabana de ventas para el proceso de 
+    solicitudes de invercción 
     """
-
-    def __init__(self, schemeDB, 
-                 wareHouse, 
-                 initDate=None, 
-                 endDate=None, 
-                 nameCellers=None, 
-                 nameHouse=None, 
-                 codeHouse=None) -> None:
-        super().__init__(schemeDB, wareHouse, initDate, endDate)
-        self.nameCellers = nameCellers
-        self.nameHouse = nameHouse
-        self.codeHouse = codeHouse
+    def __init__(self, schemeDB, wareHouse):
+        self.schemeDB = schemeDB
+        self.wareHouse = wareHouse
     
     
     def transformData(self):
-        text = ConverText.converTextFormatSQL('parrettoventas.sql', self.schemeDB)
+        text = ConverText.converTextFormatSQL('parrettoventas.sql', self.schemeDB, self.wareHouse)
         datas, nameRows = extracData(text)
-        data = pd.array(datas)
-        wb = openpyxl.Workbook()
-        hoja = wb.active
-        hoja.append(nameRows)
-        for i in range(len(data)):
-            hoja.append(list(data[i]))
-        
-        wb.save(os.path.join(os.path.dirname(os.path.abspath('docs')),'scripts/docs/'+self.nameArchivo()))
+        ConverText.ConverDataXlsx(nameRows,datas,'Parretto de Ventas.xlsx')
+        print("Elemento Guardado.")
 
-    def nameArchivo(self):
-        return 'Parretto de Ventas.xlsx'.format(self.nameHouse)
 
     

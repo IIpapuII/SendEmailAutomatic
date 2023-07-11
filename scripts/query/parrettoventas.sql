@@ -77,7 +77,7 @@ LEFT JOIN
                             ON T3."U_HBT_MunMedS" = T12."Code"
 WHERE
 	T1."DocDate" BETWEEN ADD_DAYS(CURRENT_DATE,-EXTRACT(DAY FROM CURRENT_DATE) + 1) AND CURRENT_DATE
-	--AND T1."DocNum" = '10078561'
+	AND T2."WhsCode" in ({1})
 
 UNION ALL
 
@@ -160,6 +160,7 @@ LEFT JOIN
                             ON T3."U_HBT_MunMedS" = T12."Code"
 WHERE
 	T1."DocDate" BETWEEN ADD_DAYS(CURRENT_DATE,-EXTRACT(DAY FROM CURRENT_DATE) + 1) AND CURRENT_DATE
+	AND T2."WhsCode" in ({1})
 	--AND T1."DocNum" = '10078561'
 /*ORDER BY
 	"FechaDocumento"*/

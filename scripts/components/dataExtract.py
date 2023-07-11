@@ -24,6 +24,7 @@ def extracData(text):
     return coon.fetchall() , ExtractDescription(coon.description)
 
 def extracJSON(NameArchive):
+    """Ingresar el nombre del archivo Json a leer y traduccir"""
     dataJSON = open(getFilePath('config', NameArchive), "r")
     dataJSON = json.loads(str(dataJSON.read()))
     return dataJSON

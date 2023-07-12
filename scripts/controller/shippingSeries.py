@@ -1,16 +1,13 @@
 from components.sendMail import sendMailEcxel
 from generator.seriesGeneration import SeriesInvoiceSend
 from components.transformData import exportHTML, dateNowFormat
-import json
-import os
-import jinja2
+from components.dataExtract import getFilePath, extracJSON
+
 
 def sendSeriesInvoiceCurrent():
-    """ Modulo Encargado de Gestionar la lectura del Json Junto con el Envio de los archivos Generados """
+    """ Modulo se encarga de generar el vencimiento de las series de documentos  SAP """
 
-    dataJSON = open(os.path.join(os.path.dirname(os.path.abspath('config')),'scripts/config/counter.json'), "r")
-    dataJSON = json.loads(str(dataJSON.read()))
-
+    dataJSON = extracJSON('counter.json')
     #Control de Lectura
     for i in dataJSON:
         print(i)
@@ -24,11 +21,12 @@ def sendSeriesInvoiceCurrent():
             "Serie de Facturas y Fechas de Vencimiento".format(dataJSON[i]['nameHouse'],dateNowFormat()),
             exportHTML('seriesNotification.html', date_today = dateNowFormat(),
                        header = names, dataSeries = data, 
-                       distributor_entity = dataJSON[i]['nameHouse']),None
+                       distributor_entity = dataJSON[i]['nameHouse']),None, password= dataJSON[i]['password']
             )
+        
         for fields in range(len(data)):
             row = data[fields]
-            if row[1] > 1000 or row[2] > 10:
+            if row[1] > 500 or row[2] > 3:
                 print("No fue enviado el mensaje")
             else:
                 triggerMail.sendProviderEmail()

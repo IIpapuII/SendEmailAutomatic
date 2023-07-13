@@ -1,12 +1,6 @@
-from hdbcli import dbapi
-import os
-from dotenv import load_dotenv
-import pandas as pd
-import openpyxl
 from model.conectDB import conect
 from components.converTextData import ConverText
 from components.dataExtract import extracData
-from model.modelSQL import Structure
 
 """
 Modulo Encardo de la conexión a la base y generación del archivo de ecxel 

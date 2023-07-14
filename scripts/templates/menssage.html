@@ -8,68 +8,150 @@
     <meta name="x-apple-disable-message-reformatting">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="telephone=no" name="format-detection">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=K2D:wght@400;700&display=swap" rel="stylesheet">
+
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        .block{
-            display: grid;
-            flex-wrap: nowrap;
-            width: 560px;
-            height: 470px;
-            padding: 30px;
-            border: 3px solid rgb(247, 37, 0);
-            border-radius: 10px;
-            flex-direction: column;
-            color: black;
+        #title {
+            width: auto;
+            font-family: 'K2D', sans-serif;
+            font-size: large;                   /*Estilo del titulo*/
         }
-        .block h2{
+
+        .text {
+            font-family: 'K2D', sans-serif;
+            font-size: medium;                   /*Estilo del texto*/
+            text-align: justify;
+        }
+
+        #message_important {
+            font-weight: 700;
+            font-size: larger;
             text-align: center;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
         }
-        .block .block_content{
-            margin: 5px;
-            height: 170px;
-            padding: 5px;
-            background-color: aliceblue;
+
+        #container_box_message {
+            display: flex;
+            margin: auto;
+            width: 800px;
         }
-        .block .block_content p {
-            margin-right: 10px;
-            font-family: Arial, Helvetica, sans-serif;
+
+        span {
+            font-weight: bold;          /*Resaltar texto*/
+        }
+        
+        #box {
+            border: 3px #7B0F10 solid;
+            height: auto;
+            width: 400px;           /*Estilo del borde*/
+            border-radius: 10px;
+            padding: 10px 10px 10px 10px;
+            display: flex;
+            margin: auto;
+
+            background-image: url('https://qivblu.stripocdn.email/content/guids/CABINET_bf53c089fa1d7edca832c660953b1053aaf8c792fb9e25e69404d65675690d1f/images/svg_kLB.png');
+            background-repeat: no-repeat;
+            background-position: left bottom;
+            background-size: contain;
+            padding-bottom: 130px;
+        }
+
+        #logo {
+            position: relative;
+            width: 200px;
+            padding: 0;
+            align-self: right;
+        }
+
+        #name {
+            font-size: large;
+            margin-top: 8px;
+            margin-bottom: 20px;
+            font-style: italic;
+            line-height: 1px;
             color: black;
         }
-        .block .block_content:hover{
-            background-color: rgb(250, 250, 250);
+
+        #phone_number {
+            font-size: medium;
+            margin-bottom: 20px;
+            font-style: italic;
+            line-height: 1px;
+            color: black;
         }
-        .block .block_footer p {
-            font-family: Arial, Helvetica, sans-serif;
-            font-weight: 600;
+
+        #plan {
+            font-size: medium;
+            margin-bottom: 20px;
+            font-style: italic;
+            line-height: 1px;
+            color: black;
+        }
+
+        #email {
+            font-size: medium;
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-style: italic;
+            line-height: 1px;
+            color: black;
+        }
+
+        #place {
+            font-size: medium;
+            font-style: italic;
+            line-height: 1px;
+            color: black;
         }
     </style>
 </head>
-<body >
 
-    <div style="display:grid;">
-    <div class="block">
-        <h2 >Inventario {{NameHouse}}</h2>
-        <div class="block_content ">
-            <p>Cordial saludo,</p>
-            <p>Comparto Inventario al d&iacute;a de hoy de los almacenes: </p>
-            <p>{{listWhareHouse}}</p>
-            <p>cualquier novedad informar a <a>compras1@c.gelvezdistribuciones.com</a> </p>
-        </div>
-        <div class="block_footer">
-            <td>
-                <a target="_blank">
-                    <img class="adapt-img" src="https://demo.stripocdn.email/content/guids/79874f80-95ea-46a1-a92e-3192ba93e1ec/images/logo.png" alt style="display: block;" width="200">
-                </a>
-            </td>
-            <p style="margin: 0;">Jerson Eduardo Calder&oacute;n</p>
-            <p style="margin: 0;">Lider compras</p>
-            <p style="margin:0;">3103309799</p>
-        </div>
+<body>
+    <div id="box">
+        <table>
+            <tr>
+                <td id="title">
+                    <h2>Inventario <br> {{NameHouse}}</h2>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="text">Cordial saludo,</p>
+                    <p class="text">Comparto Inventario al d&iacute;a de hoy de los almacenes:<br> {{listWhareHouse}}</p>           <!--Contenido de la carta-->
+                    <p class="text">Cordialmente,</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a target="_blank">
+                        <img id="logo" src="https://demo.stripocdn.email/content/guids/79874f80-95ea-46a1-a92e-3192ba93e1ec/images/logo.png" alt style="display: block;" width="200">
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="text" id="name">Jerson Eduardo Calder&oacute;n</p>
+                    <p class="text" id="plan">Lider de Compras</p>
+                    <p class="text" id="phone_number">(+57) 310-3309799</p>
+                    <p class="text" id="email">compras1@c.gelvezdistribuciones.com</p>
+                    <p class="text" id="place">Cúcuta - Norte de Santander</p>
+                </td>
+            </tr>
+            
+        </table>
     </div>
-</div>
-    
-    
+    <div id="container_box_message">
+        <p class="text" id="message_important">
+            Este es un correo enviado por un sistema automático de retroalimentación, 
+            le sugerimos abstenerse de responderlo, para resolver cualquier inquietud o 
+            recibir información adicional, diríjase por favor al correo 
+            compras1@c.gelvezdistribuciones.com
+        </p>
+    </div>
 </body>
+
 </html>

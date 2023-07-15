@@ -2,7 +2,6 @@ from components.dataExtract import extracData
 from components.converTextData import ConverText
 from components.transformData import dataFusion, exportExcel
 from model.modelSQL import Structure
-import pandas as pd
 import os
 
 class SendParretto (Structure):

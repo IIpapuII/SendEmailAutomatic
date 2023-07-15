@@ -1,9 +1,8 @@
-from model.conectDB import conect
 from components.converTextData import ConverText
-from components.dataExtract import ejecuteQueryNotDate
+from components.dataExtract import ejecuteQueryNotDate, extracData
 
 
-coon = conect()
+
 class ProjectAccountingEjecute():
     """
     Se encarga de realizar el repice de los asientos que se encuentran sin proyecto a nivel contable.
@@ -15,6 +14,9 @@ class ProjectAccountingEjecute():
     
     
     def transformData(self):
-        text = ConverText.converTextFormatSQL('projectAccounting.sql', self.schemeDB, self.initDate, self.endDate)
-        ejecuteQueryNotDate(text)
-        print("asientos correjidos.")
+        TransId = ConverText.converTextFormatSQL('EmptyProjectSeat.sql', self.schemeDB)
+        data, descripcion  = extracData(TransId)
+        for i in data:
+            text = ConverText.converTextFormatSQL('projectAccounting.sql', self.schemeDB, i[1])
+            ejecuteQueryNotDate(text)
+            print("Asiento correjido: ", i[1])

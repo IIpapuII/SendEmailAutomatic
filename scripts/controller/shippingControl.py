@@ -1,4 +1,3 @@
-from components  import sendMail
 from components.sendMail import sendMailEcxelMultiple
 from generator.dataGeneration import ProveedoresSend
 from generator.ParretoGenerationSales import ParettoSales

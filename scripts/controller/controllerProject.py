@@ -9,9 +9,10 @@ def ejecuteProjectAccounting():
 
     for i in dataJSON:
         triggerData = ProjectAccountingEjecute(
-            dataJSON[i]['schemeDB'],
+            dataJSON[i]['ShemeDB'],
             dateNowHana(),
             dateNowHana()
         )
+        print(dataJSON[i]['ShemeDB'])
     
-    triggerData.transformData()
+        triggerData.transformData()

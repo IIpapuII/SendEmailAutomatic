@@ -26,6 +26,8 @@ def extracData(text):
 def ejecuteQueryNotDate(text):
     coon = conect()
     coon.execute(text)
+    rows_affected = coon.rowcount
+    print("Rows Affected:", rows_affected)
 
 def extracJSON(NameArchive):
     """Ingresar el nombre del archivo Json a leer y traduccir"""

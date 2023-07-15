@@ -1,11 +1,10 @@
-from model.conectDB import conect
 from components.converTextData import ConverText
 from components.dataExtract import extracData
 
 """
 Modulo Encardo de la conexión a la base y generación del archivo de ecxel 
 """
-coon = conect()
+
 class ParrettoSend():
     """
     Se encarga de generar el proceso de envio de la sabana de ventas para el proceso de 

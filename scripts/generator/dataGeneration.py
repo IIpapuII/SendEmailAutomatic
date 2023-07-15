@@ -1,15 +1,14 @@
 
 import pandas as pd
 import openpyxl
-from model.conectDB import conect
 from components.converTextData import ConverText
 from components.dataExtract import extracData, getFilePath
-from model.modelSQL import Structure, Proveedor
+from model.modelSQL import Structure
 
 """
 Modulo Encardo de la conexión a la base y generación del archivo de ecxel 
 """
-coon = conect()
+
 class ProveedoresSend(Structure):
     """
     Se encarga de generar el objeto del provedor junto con el iventario que maneja

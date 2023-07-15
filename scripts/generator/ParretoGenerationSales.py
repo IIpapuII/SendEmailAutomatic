@@ -2,10 +2,6 @@ from model.modelSQL import Structure
 from components.converTextData import ConverText
 from components.dataExtract import extracData
 
-
-
-
-
 class ParettoSales(Structure):
     def __init__(self, schemeDB, 
                  wareHouse, 

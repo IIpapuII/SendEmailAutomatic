@@ -1,4 +1,3 @@
-from model.conectDB import conect
 from components.converTextData import ConverText
 from components.dataExtract import extracData
 from model.modelSQL import Structure
@@ -7,7 +6,7 @@ from model.modelSQL import Structure
 Modulo Encardo de la conexión a la base y generación del archivo de ecxel 
 """
 
-coon = conect()
+
 class SeriesInvoiceSend(Structure):
     """
     Se encarga de generar el objeto del proveedor junto con el inventario que maneja

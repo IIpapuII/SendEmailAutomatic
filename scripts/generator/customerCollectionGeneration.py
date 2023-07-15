@@ -1,16 +1,13 @@
 from datetime import datetime
-from model.conectDB import conect
 from components.converTextData import ConverText
 from components.dataExtract import extracData
 from components.transformData import dateNowFormat
 from model.modelSQL import Structure
-import pandas as pd
 
 """
 Modulo Encardo de la conexión a la base y generación del archivo de ecxel 
 """
 
-coon = conect()
 class CustomerCollectionSend(Structure):
     """
     Se encarga de generar el objeto del proveedor junto con el inventario que maneja

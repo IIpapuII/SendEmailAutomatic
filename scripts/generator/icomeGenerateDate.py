@@ -3,8 +3,7 @@ from components.dataExtract import extracData, getFilePath
 from components.converTextData import ConverText
 from components.transformData import dataFusion, exportExcel
 from model.modelSQL import Structure
-import pandas as pd
-import os
+
 
 class SendIcomes(Structure):
     

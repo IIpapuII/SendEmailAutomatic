@@ -30,15 +30,16 @@ def sendParrettoCurrent():
                             dataJSON[i]['sender'],
                             dataJSON[i]['addresse'],
                             "Apoyo comercial a productos de baja rotación",
-                            exportHTML('massiveParretto.html', date_today = dateNowFormat(), distributor_entity = dataJSON[i]['nameHouse']),
+                            exportHTML('InventoryReport.html', date_today = dateNowFormat(), distributor_entity = dataJSON[i]['nameHouse']),
                             'Parretto de Ventas.xlsx',
                             dataJSON[i]['password']
                             )
                         triggerData.transformData()
-                        print('Se Genero: Sabana de ventas')
+                        print('Se Genero:', supplier)
                         triggerMail.sendProviderEmail()
 
-                    foundedGelvez = False
+                if j == "Proveedores_Ocaña":
+                    break
         
         if i == "BD_Gran Distribuidor": #Seleccionamos BD
 
@@ -62,7 +63,10 @@ def sendParrettoCurrent():
                             )
                         triggerData.transformData()
                         print('Se Genero: Sabana de ventas')
-                        triggerMail.sendProviderEmail()        
+                        triggerMail.sendProviderEmail()      
+
+                if j == "Proveedores_Eje":
+                    break  
 
         if i == "Bodega_Gran Distribuidor":
             break

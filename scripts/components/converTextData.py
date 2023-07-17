@@ -34,6 +34,10 @@ class ConverText:
     
     def ConverDataXlsx(Descripcion, data, nameAchive ):
         df = pd.DataFrame(data, columns= Descripcion  )
+
+        for column in df.columns:
+            df[column] = pd.to_numeric(df[column], errors='ignore')
+
         df.to_excel(getFilePath('docs', nameAchive),index=False)
     
     

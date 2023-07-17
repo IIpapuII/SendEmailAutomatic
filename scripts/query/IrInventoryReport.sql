@@ -186,8 +186,8 @@ FROM (
 		"OSTC" T8
 			ON T1."TaxCodeAR" = T8."Code"
 	WHERE
-		T3."ItmsGrpNam" LIKE '%[%1]%' --Arreglar
-		AND T6."WhsName" LIKE '%[%2]%' --Arreglar
+		T3."ItmsGrpNam" LIKE '%[%1]%' 
+		AND T6."WhsCode" IN (006,011) --Arreglar
 ) AS D1
 WHERE
 	D1."Stock" > 0 AND

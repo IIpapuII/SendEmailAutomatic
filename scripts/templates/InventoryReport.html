@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office"></html>
+
+    <head>
+
+        <meta charset="UTF-8">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <meta name="x-apple-disable-message-reformatting">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta content="telephone=no" name="format-detection">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=K2D:wght@400;700&display=swap" rel="stylesheet">
+        
+        <style>
+            #title {
+                width: 200px;
+                font-family: 'K2D', sans-serif;
+                font-size: small;                   /*Estilo del titulo*/
+            }
+
+            .text {
+                font-family: 'K2D', sans-serif;
+                font-size: small;                   /*Estilo del texto*/
+                text-align: justify;
+            }
+
+            #message_important {
+                font-weight: 700;
+                font-size: larger;
+                text-align: center;
+            }
+
+            #container_box_message {
+                display: flex;
+                margin: auto;
+                width: 800px;
+            }
+
+            span {
+                font-weight: bolder;          /*Resaltar texto*/
+            }
+            
+            #box {
+                border: 3px #7B0F10 solid;
+                height: auto;
+                width: 600px;           /*Estilo del borde*/
+                border-radius: 10px;
+                padding: 10px 10px 10px 10px;
+                display: flex;
+                margin: auto;
+
+                background-image: url('https://qivblu.stripocdn.email/content/guids/CABINET_bf53c089fa1d7edca832c660953b1053aaf8c792fb9e25e69404d65675690d1f/images/svg_kLB.png');
+                background-repeat: no-repeat;
+                background-position: left bottom;
+                background-size: contain;
+                padding-bottom: 185px;
+            }
+
+            #logo {
+                position: relative;
+                width: 195px;
+                padding: 0;
+                margin: auto;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="box">
+            <table>
+                <tr>
+                    <td>
+                        <a target="_blank">
+                            <img id="logo" src="https://demo.stripocdn.email/content/guids/79874f80-95ea-46a1-a92e-3192ba93e1ec/images/logo.png" alt style="display: block;" width="200">
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {% if date_today == 1 %}
+                        <p class="text"><span>Cordial saludo, aliado comercial <br>"{{supplier}}"<br></span></p>
+
+                        <p class="text">Quiero aprovechar esta oportunidad para informarle sobre los productos que actualmente tenemos 
+                        almacenados en nuestra bodega, los cuales han superado los <span>60 días</span> sin ser evacuados en su totalidad a 
+                        corte del día <span style="font-size: larger; color: red;">{{date_today}}</span>.</p>
+
+                        <p class="text">Con el objetivo de evitar la presencia de productos vencidos, en mal estado o no aptos para la venta, 
+                        le insto a colaborar en la generación de <span style="color: red;">estrategias, incentivos o descuentos</span> en conjunto con 
+                        nuestros jefes de venta para facilitar su evacuación.</p>
+
+                        <p class="text">Aprecio enormemente su compromiso y colaboración en esta materia. Al trabajar juntos, podremos 
+                        garantizar la eficiente gestión de nuestros productos y la satisfacción de nuestros clientes. 
+                        Le agradecería que me hagan llegar sus propuestas y sugerencias lo antes posible, a fin de implementar 
+                        acciones efectivas para asegurar la evacuación de dichos productos.</p>
+
+                        <p class="text">Quedo a su disposición para cualquier consulta o aclaración adicional que puedan necesitar.</p>
+
+                        <p class="text">Agradeciéndoles de antemano su pronta respuesta y apoyo.</p>
+                        {% endif %}
+
+                        
+                        {% if date_today == 15 %}
+                        <p class="text"><span>Cordial saludo, Sres. Jefes comerciales,<br></span></p>
+
+                        <p class="text">Quiero ponerlos al tanto de la situación actual de nuestros productos almacenados en la bodega, 
+                            los cuales han superado los <span>60 días</span> sin ser evacuados en su totalidad a corte del día 
+                            <span style="font-size: larger; color: red;">{{date_today}}</span>. En vista de esto, les insto a que realicen un seguimiento más cercano a 
+                            sus asesores comerciales o vendedores, asignando y supervisando la rotación de los mismos. Además, 
+                            les animo a que se comuniquen con los proveedores, ya sea a través de reuniones o correos electrónicos, 
+                            para coordinar la evacuación de dichos productos. </p>
+
+                        <p class="text">Con el objetivo de evitar la presencia de productos vencidos, en mal estado o no aptos para la venta, 
+                        le insto a colaborar en la generación de <span style="color: red;">estrategias, incentivos o descuentos</span> en conjunto con 
+                        nuestros proveedores para facilitar su evacuación.</p>
+
+                        <p class="text">Aprecio enormemente su compromiso y colaboración en esta materia. Al trabajar juntos, podremos 
+                        garantizar la eficiente gestión de nuestros productos y la satisfacción de nuestros clientes. 
+                        Le agradecería que hagan llegar sus propuestas y sugerencias lo antes posible a los proveedores, a fin de implementar 
+                        acciones efectivas para asegurar la evacuación de dichos productos.</p>
+
+                        <p class="text">Quedo a su disposición para cualquier consulta o aclaración adicional que puedan necesitar.</p>
+
+                        <p class="text">Agradeciéndoles de antemano su pronta respuesta y apoyo.</p>
+                        {% endif %}
+
+                        <p class="text"><span>NOTA:</span> En la columna que dice <span>"días"</span> calcula los días que lleva la mercancía en la bodega de 
+                            Gelvez, nada tiene que ver con los días de inventario, luego de eso sigue una clasificación del 
+                            valor del inventario de acuerdo a los días que lleva en bodega. Por otro lado, la columna <span>"Por venta"</span>, 
+                            indica si el producto no tiene venta hace más de <span>30 días</span>. En caso de encontrar alguna bonificación revisar 
+                            a columna <span>"Última Fecha Kardex"</span> para ver si tiene la rotación o por tanto usarlo para alguna dinámica.</p>
+    
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="container_box_message">
+            <p class="text" id="message_important">
+                Este es un correo enviado por un sistema automático de retroalimentación, 
+                le sugerimos abstenerse de responderlo, para resolver cualquier inquietud o 
+                recibir información adicional, diríjase por favor al correo 
+                cartera@c.gelvezdistribuciones.com
+            </p>
+        </div>
+    </body>
+</html>

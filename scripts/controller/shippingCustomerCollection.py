@@ -4,7 +4,6 @@ from components.transformData import exportHTML, dateNowFormat,convertNumberToTe
 import pandas as pd
 import json
 import os
-import jinja2
 
 def sendCustomerCollectionMail():
     """ Modulo Encargado de Gestionar la lectura del Json Junto con el Envio de los archivos Generados """

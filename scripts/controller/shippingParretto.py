@@ -14,7 +14,7 @@ def sendParrettoCurrent():
         
         triggerMail = sendMailEcxel(
             dataJSON[i]['sender'],
-            "supporsistemas@c.gelvezdistribuciones.com",
+            dataJSON[i]['addresse'],
             "Sabana de Ventas para Liquidaciones," + dateNowFormat(),
             exportHTML('massiveParretto.html', date_today = dateNowFormat(), distributor_entity = dataJSON[i]['nameHouse']),
             'Parretto de Ventas.xlsx',

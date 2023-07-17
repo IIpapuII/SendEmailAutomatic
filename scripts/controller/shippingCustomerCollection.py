@@ -32,7 +32,11 @@ def sendCustomerCollectionMail():
                 print(ccCLient, "", nameClient)
             elif wait <= time_pay:
                 print("EL cliente aun no tiene la factura vencida")
-                print(ccCLient, "", nameClient)                
+                print(ccCLient, "", nameClient)     
+            elif wait < 15:
+                print("No llega a 15 dias de mora")
+                print(ccCLient, "", nameClient)     
+           
             else:
                 coin_format, coin_ref = formatNumberMoney(coin)
 

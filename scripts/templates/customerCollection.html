@@ -98,14 +98,15 @@
                         con <span>{{date_waiting}} dias de mora</span>, y 
                         un saldo de <span>{{money_number}} ({{money_letter}} {{money_ref}}).</span></p>   
                         
-                        {% if date_waiting > 30 %}
+                        {% if date_waiting >= 30 %}
                         <p class="text">
                             Lo invitamos a que coloque al día su obligación, y se 
                             solicita el <span>pago inmediato</span> para evitar ser reportado de 
                             manera negativa a las centrales de riesgo. Para atender tus 
                             dudas puedes comunicarte al <span>3006677026</span>.
                         </p>
-                        {% else %}
+                        {% endif %}
+                        {% if date_waiting >= 15 %}
                         <p class="text">
                             Lo invitamos a que coloque al día su obligación, en caso de que 
                             su factura continue en mora la información será reportado de 

@@ -16,28 +16,10 @@
         <link href="https://fonts.googleapis.com/css2?family=K2D:wght@400;700&display=swap" rel="stylesheet">
         
         <style>
-            #title {
-                width: 200px;
-                font-family: 'K2D', sans-serif;
-                font-size: small;                   /*Estilo del titulo*/
-            }
-
             .text {
                 font-family: 'K2D', sans-serif;
                 font-size: small;                   /*Estilo del texto*/
                 text-align: justify;
-            }
-
-            #message_important {
-                font-weight: 700;
-                font-size: larger;
-                text-align: center;
-            }
-
-            #container_box_message {
-                display: flex;
-                margin: auto;
-                width: 800px;
             }
 
             span {
@@ -62,10 +44,35 @@
 
             #logo {
                 position: relative;
-                width: 195px;
+                width: 200px;
                 padding: 0;
-                margin: auto;
+                align-self: right;
             }
+
+            #name {
+                font-size: large;
+                margin-top: 8px;
+                margin-bottom: 20px;
+                font-style: italic;
+                line-height: 1px;
+                color: black;
+            }
+
+            #phone_number, #plan, #email {
+                font-size: medium;
+                margin-bottom: 20px;
+                font-style: italic;
+                line-height: 1px;
+                color: black;
+            }
+
+            #place {
+                font-size: medium;
+                font-style: italic;
+                line-height: 1px;
+                color: black;
+            }
+
         </style>
     </head>
 
@@ -74,19 +81,12 @@
             <table>
                 <tr>
                     <td>
-                        <a target="_blank">
-                            <img id="logo" src="https://demo.stripocdn.email/content/guids/79874f80-95ea-46a1-a92e-3192ba93e1ec/images/logo.png" alt style="display: block;" width="200">
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        {% if date_today == 1 %}
+                        {% if date_days == 1 %}
                         <p class="text"><span>Cordial saludo, aliado comercial <br>"{{supplier}}"<br></span></p>
 
                         <p class="text">Quiero aprovechar esta oportunidad para informarle sobre los productos que actualmente tenemos 
                         almacenados en nuestra bodega, los cuales han superado los <span>60 días</span> sin ser evacuados en su totalidad a 
-                        corte del día <span style="font-size: larger; color: red;">{{date_today}}</span>.</p>
+                        corte del día <span style="font-size: larger; color: red;">{{date_now}}</span>.</p>
 
                         <p class="text">Con el objetivo de evitar la presencia de productos vencidos, en mal estado o no aptos para la venta, 
                         le insto a colaborar en la generación de <span style="color: red;">estrategias, incentivos o descuentos</span> en conjunto con 
@@ -103,12 +103,12 @@
                         {% endif %}
 
                         
-                        {% if date_today == 15 %}
+                        {% if date_days == 15 %}
                         <p class="text"><span>Cordial saludo, Sres. Jefes comerciales,<br></span></p>
 
                         <p class="text">Quiero ponerlos al tanto de la situación actual de nuestros productos almacenados en la bodega, 
                             los cuales han superado los <span>60 días</span> sin ser evacuados en su totalidad a corte del día 
-                            <span style="font-size: larger; color: red;">{{date_today}}</span>. En vista de esto, les insto a que realicen un seguimiento más cercano a 
+                            <span style="font-size: larger; color: red;">{{date_now}}</span>. En vista de esto, les insto a que realicen un seguimiento más cercano a 
                             sus asesores comerciales o vendedores, asignando y supervisando la rotación de los mismos. Además, 
                             les animo a que se comuniquen con los proveedores, ya sea a través de reuniones o correos electrónicos, 
                             para coordinar la evacuación de dichos productos. </p>
@@ -135,6 +135,22 @@
     
                     </td>
                 </tr>
+                <tr>
+                    <td>
+                        <a target="_blank">
+                            <img id="logo" src="https://demo.stripocdn.email/content/guids/79874f80-95ea-46a1-a92e-3192ba93e1ec/images/logo.png" alt style="display: block;" width="200">
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="text" id="name">Jerson Eduardo Calder&oacute;n</p>
+                        <p class="text" id="plan">Lider de Compras</p>
+                        <p class="text" id="phone_number">(+57) 310-3309799</p>
+                        <p class="text" id="email">compras1@c.gelvezdistribuciones.com</p>
+                        <p class="text" id="place">Cúcuta - Norte de Santander</p>
+                    </td>
+                </tr>
             </table>
         </div>
         <div id="container_box_message">
@@ -142,7 +158,7 @@
                 Este es un correo enviado por un sistema automático de retroalimentación, 
                 le sugerimos abstenerse de responderlo, para resolver cualquier inquietud o 
                 recibir información adicional, diríjase por favor al correo 
-                cartera@c.gelvezdistribuciones.com
+                compras1@c.gelvezdistribuciones.com
             </p>
         </div>
     </body>

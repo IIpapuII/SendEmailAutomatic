@@ -11,28 +11,30 @@ def sendCustomerCollectionMail():
     dataJSON = open(os.path.join(os.path.dirname(os.path.abspath('config')),'scripts/config/client.json'), "r")
     dataJSON = json.loads(str(dataJSON.read()))
 
-    df = pd.read_excel(os.path.join(os.path.dirname(os.path.abspath('docs')),'scripts/docs/ClientesDeudores.xlsx'), header=None)
-    df_array = df.values
+    key = 0
 
     #Control de Lectura
     for i in dataJSON:
         print(i)
-        container = CustomerCollectionSend(schemeDB= dataJSON[i]['ShemeDB'],
-            codeHouse= dataJSON[i]['codeHouse'],
-            nameHouse= dataJSON[i]['nameHouse'])
+        container = CustomerCollectionSend(schemeDB= dataJSON[i]['ShemeDB'])
+
+        if key == 0:
+            df = pd.read_excel(os.path.join(os.path.dirname(os.path.abspath('docs')),'scripts/docs/ClientesDeudoresGelvez.xlsx'), header=None)
+            df_array = df.values
+            key += 1
+        elif key > 0:
+            df = pd.read_excel(os.path.join(os.path.dirname(os.path.abspath('docs')),'scripts/docs/ClientesDeudoresGranDist.xlsx'), header=None)
+            df_array = df.values
 
         for j in range(len(df_array)):
-            nameClient, ccCLient, endDateCheck, wait, coin, email, time_pay  = container.transformData(df_array[j])
+            nameClient, ccCLient, endDateCheck, wait, coin, email  = container.transformData(df_array[j])
 
             if email == "":
                 email = "supporsistemas@c.gelvezdistribuciones.com"
             
             if coin <= 0:
                 print("EL cliente no tiene saldo pendiente")
-                print(ccCLient, "", nameClient)
-            elif wait <= time_pay:
-                print("EL cliente aun no tiene la factura vencida")
-                print(ccCLient, "", nameClient)     
+                print(ccCLient, "", nameClient)   
             elif wait < 15:
                 print("No llega a 15 dias de mora")
                 print(ccCLient, "", nameClient)     

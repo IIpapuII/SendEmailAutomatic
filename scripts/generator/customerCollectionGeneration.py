@@ -12,17 +12,8 @@ class CustomerCollectionSend(Structure):
     """
     Se encarga de generar el objeto del proveedor junto con el inventario que maneja
     """
-
-    def __init__(self, schemeDB, 
-                 initDate=None, 
-                 endDate=None, 
-                 nameCellers=None, 
-                 nameHouse=None, 
-                 codeHouse=None) -> None:
-        super().__init__(schemeDB, initDate, endDate)
-        self.nameCellers = nameCellers
-        self.nameHouse = nameHouse
-        self.codeHouse = codeHouse
+    def __init__(self, schemeDB):
+        self.schemeDB = schemeDB
     
     def date(self, ref: str):
         fecha1 = datetime.strptime(ref, '%d/%m/%Y')
@@ -45,8 +36,5 @@ class CustomerCollectionSend(Structure):
         endDateCheck = str(row[5])
         wait = self.date(endDateCheck)
         email = str(row[6])
-        time_pay = int(row[7])
 
-        
-
-        return nameClient, ccCLient, endDateCheck, wait, coin, email, time_pay
+        return nameClient, ccCLient, endDateCheck, wait, coin, email

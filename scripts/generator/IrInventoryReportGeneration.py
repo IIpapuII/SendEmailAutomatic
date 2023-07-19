@@ -1,6 +1,8 @@
 from model.conectDB import conect
 from components.converTextData import ConverText
 from components.dataExtract import extracData
+from components.sendMail import sendMailEcxel
+
 
 """
 Modulo Encardo de la conexión a la base y generación del archivo de ecxel 
@@ -21,5 +23,9 @@ class InventoryReportSend():
         ConverText.ConverDataXlsx(nameRows,datas,'Parretto de Ventas.xlsx')
         print("Elemento Guardado.")
 
-
-    
+    def processingData(self, dataJSON):
+        list_key = []
+        for key in dataJSON:
+            list_key.append(key)
+        
+        if key

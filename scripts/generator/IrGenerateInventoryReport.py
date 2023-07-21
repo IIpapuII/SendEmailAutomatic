@@ -15,5 +15,5 @@ class SendInventoryReport (Structure):
         if not data:
             return False
         else:
-            dataFusion(data,description).to_excel(os.path.join(os.path.dirname(os.path.abspath('docs')),'scripts/docs/'+'ParettoVentas.xlsx'))
+            dataFusion(data,description).to_excel(os.path.join(os.path.dirname(os.path.abspath('docs')),'scripts/docs/'+'Productos con mas de 60 dias en bodega.xlsx'))
             return True

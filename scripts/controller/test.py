@@ -1,5 +1,10 @@
-from generator.parrettoGeneration import ParrettoSend
-from components.dataExtract import extracJSON
+from datetime import datetime
+
 
 def textExtraction():
-    print()
+    today = datetime.now().day
+
+    if today == 1 or today == 15:
+        print("Definitely is one or fifteen")
+    else:
+        print(today)

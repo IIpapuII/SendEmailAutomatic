@@ -15,7 +15,7 @@ class ConverText:
         return querySQL.read()
 
     def converTextFormatSQL(fileNameSQL,*vars):
-        querySQL = open(getFilePath('query',fileNameSQL))
+        querySQL = open(getFilePath('query',fileNameSQL), encoding="utf-8")
         querySQL = str(querySQL.read()).format(*vars)
         return querySQL
     

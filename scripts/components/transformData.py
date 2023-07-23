@@ -86,3 +86,7 @@ def formatNumberMoney(number_str: str):
             ref = "pesos"
             
     return coin, ref
+
+def fromListToString (variable: str):
+    newVariable = variable.replace("[","").replace("]","")
+    return newVariable

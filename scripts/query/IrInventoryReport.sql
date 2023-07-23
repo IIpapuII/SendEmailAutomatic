@@ -15,24 +15,16 @@ SELECT
 	D1."UltimaFechaCompra",
 	D1."UltimaFechaVenta",
 	D1."UltimaFechaKardex",
-	CASE
-		WHEN D1."UltimaFechaVenta" IS NULL THEN 'SIN VENTA HACE MÁS DE 30 DÍAS'
-		WHEN D1."Stock" > 0 AND DAYS_BETWEEN(D1."UltimaFechaVenta", CURRENT_DATE) > 30 THEN 'SIN VENTA HACE MÁS DE 30 DÍAS'
-		ELSE NULL
-	END AS "Por venta",
 	D1."Dias",
 	CASE
 		WHEN D1."Dias" >= 60 AND D1."Dias" <= 90 THEN (D1."Stock" * IFNULL(D1."UltimoPrecioCompra",D1."UltimoCostoGeneral"))
-		ELSE 0
-	END AS "60 - 90 Días",
+	END AS "60 - 90 Dias",
 	CASE
 		WHEN D1."Dias" > 90 AND D1."Dias" <= 180 THEN (D1."Stock" * IFNULL(D1."UltimoPrecioCompra",D1."UltimoCostoGeneral"))
-		ELSE 0
-	END AS "91 - 180 Días",
+	END AS "91 - 180 Dias",
 	CASE
 		WHEN D1."Dias" > 180 THEN (D1."Stock" * IFNULL(D1."UltimoPrecioCompra",D1."UltimoCostoGeneral"))
-		ELSE 0
-	END AS "> 180 Días"
+	END AS "> 180 Dias"
 
 	
 FROM (
@@ -52,7 +44,7 @@ FROM (
 		(SELECT
 			IFNULL(SUM(TA."InQty" - TA."OutQty"),0)
 		FROM
-			"OINM" TA
+			{0}."OINM" TA
 		WHERE
 			TA."ItemCode" = T1."ItemCode"
 			AND TA."Warehouse" = T2."WhsCode"
@@ -62,9 +54,9 @@ FROM (
 		(SELECT
 			MAX(TB."Price")
 		FROM
-			"OPCH" TA
+			{0}."OPCH" TA
 		INNER JOIN
-			"PCH1" TB
+			{0}."PCH1" TB
 				ON TA."DocEntry" = TB."DocEntry"
 		WHERE
 			TB."ItemCode" = T1."ItemCode"
@@ -75,9 +67,9 @@ FROM (
 			(SELECT
 				MAX(TA."DocDate")
 			FROM
-				"OPCH" TA
+				{0}."OPCH" TA
 			INNER JOIN
-				"PCH1" TB
+				{0}."PCH1" TB
 					ON TA."DocEntry" = TB."DocEntry"
 			WHERE
 				TB."ItemCode" = T1."ItemCode"
@@ -90,9 +82,9 @@ FROM (
 			(SELECT
 				MAX(TA."DocDate")
 			FROM
-				"OINV" TA
+				{0}."OINV" TA
 			INNER JOIN
-				"INV1" TB
+				{0}."INV1" TB
 					ON TA."DocEntry" = TB."DocEntry"
 			WHERE
 				TB."ItemCode" = T1."ItemCode"
@@ -105,7 +97,7 @@ FROM (
 			(SELECT
 				IFNULL(MAX(TA."DocDate"),'20220930')
 			FROM
-				"OINM" TA
+				{0}."OINM" TA
 			WHERE
 				TA."ItemCode" = T1."ItemCode"
 				AND TA."Warehouse" = T2."WhsCode"
@@ -129,7 +121,7 @@ FROM (
 		(SELECT
 			STRING_AGG(TA."BcdCode",',' ORDER BY TA."BcdCode")
 		FROM
-			"OBCD" TA
+			{0}."OBCD" TA
 		WHERE
 			TA."ItemCode" = T1."ItemCode"
 			AND TA."BcdCode" <> T1."CodeBars"
@@ -140,9 +132,9 @@ FROM (
 				(SELECT
 					MAX(TA."DocDate")
 				FROM
-					"OPCH" TA
+					{0}."OPCH" TA
 				INNER JOIN
-					"PCH1" TB
+					{0}."PCH1" TB
 						ON TA."DocEntry" = TB."DocEntry"
 				WHERE
 					TB."ItemCode" = T1."ItemCode"
@@ -152,7 +144,7 @@ FROM (
 				(SELECT
 					IFNULL(MAX(TA."DocDate"),'20220930')
 				FROM
-					"OINM" TA
+					{0}."OINM" TA
 				WHERE
 					TA."ItemCode" = T1."ItemCode"
 					AND TA."Warehouse" = T2."WhsCode"
@@ -163,31 +155,31 @@ FROM (
 		) AS "Dias"
 
 	FROM
-		"OITM" T1
+		{0}."OITM" T1
 	INNER JOIN
-		"OITW" T2
+		{0}."OITW" T2
 			ON T1."ItemCode" = T2."ItemCode"
 	INNER JOIN
-		"OITB" T3
+		{0}."OITB" T3
 			ON T1."ItmsGrpCod" = T3."ItmsGrpCod"
 	LEFT JOIN
-		"@GD_SUBGRUPO" T4
+		{0}."@GD_SUBGRUPO" T4
 			ON T1."U_GD_SubGrupo" = T4."Code"
 	LEFT JOIN
-		"@GD_FAMPRODUCTOS" T5
+		{0}."@GD_FAMPRODUCTOS" T5
 			ON T1."U_GD_FamProducto" = T5."Code"
 	INNER JOIN
-		"OWHS" T6
+		{0}."OWHS" T6
 			ON T2."WhsCode" = T6."WhsCode"
 	LEFT JOIN
-		"OSTC" T7
+		{0}."OSTC" T7
 			ON T1."TaxCodeAP" = T7."Code"
 	LEFT JOIN
-		"OSTC" T8
+		{0}."OSTC" T8
 			ON T1."TaxCodeAR" = T8."Code"
 	WHERE
-		T3."ItmsGrpNam" LIKE '%[%1]%' 
-		AND T6."WhsCode" IN (006,011) --Arreglar
+		T3."ItmsGrpCod" IN ({2})
+		AND T6."WhsCode" IN ({1})
 ) AS D1
 WHERE
 	D1."Stock" > 0 AND

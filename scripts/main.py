@@ -2,6 +2,7 @@ from controller.shippingControl  import sendInventorySupplier
 from controller.icomeController import sendIcomesJson
 from controller.shippingParretto import sendParrettoCurrent
 from controller.shippingSeries import sendSeriesInvoiceCurrent
+from controller.IrShippingInventoryReport import sendInventoryReport
 from controller.shippingCustomerCollection import sendCustomerCollectionMail
 from controller.controllerProject import ejecuteProjectAccounting
 from controller.test import textExtraction
@@ -22,6 +23,8 @@ if __name__ == "__main__":
         elif sys.argv[1] == 'f':
             ejecuteProjectAccounting()
         elif sys.argv[1] == 'g':
+            sendInventoryReport()  
+        elif sys.argv[1] == 'test':
             textExtraction()
 
     else:

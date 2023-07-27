@@ -31,6 +31,6 @@ def ejecuteQueryNotDate(text):
 
 def extracJSON(NameArchive):
     """Ingresar el nombre del archivo Json a leer y traduccir"""
-    dataJSON: dict = open(getFilePath('config', NameArchive), "r")
+    dataJSON: dict = open(getFilePath('config', NameArchive), "r", encoding="utf-8")
     dataJSON = json.loads(str(dataJSON.read()))
     return dataJSON

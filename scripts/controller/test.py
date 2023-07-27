@@ -1,10 +1,13 @@
 from datetime import datetime
+from components.transformData import dateNowFormat
+from components.dataExtract import extracJSON
 
 
 def textExtraction():
-    today = datetime.now().day
+    dataJSON = extracJSON('suppliers.json')   #Si es 15vo, se escojera json de supervisores
+    listDefinition = []
+    listWord = []
+        
+    for origin in dataJSON:  #Seleccionamos proveedor/supervisor
 
-    if today == 1 or today == 15:
-        print("Definitely is one or fifteen")
-    else:
-        print(today)
+        print(datetime.now().day)

@@ -29,8 +29,8 @@ def sendCustomerCollectionMail():
         for j in range(len(df_array)):
             nameClient, ccCLient, endDateCheck, wait, coin, email  = container.transformData(df_array[j])
 
-            if email == "":
-                email = "supporsistemas@c.gelvezdistribuciones.com"
+            if email == 'None':
+                email = dataJSON[i]['sender']
             
             if coin <= 0:
                 print("EL cliente no tiene saldo pendiente")
@@ -38,7 +38,6 @@ def sendCustomerCollectionMail():
             elif wait < 15:
                 print("No llega a 15 dias de mora")
                 print(ccCLient, "", nameClient)     
-           
             else:
                 coin_format, coin_ref = formatNumberMoney(coin)
 
@@ -59,3 +58,4 @@ def sendCustomerCollectionMail():
                     dataJSON[i]['password'])
 
                 triggerMail.sendProviderEmail()
+                print(ccCLient, "", nameClient)

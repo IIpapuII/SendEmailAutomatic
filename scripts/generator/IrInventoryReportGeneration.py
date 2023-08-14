@@ -21,7 +21,6 @@ class InventoryReportSend():
         self.date = date
     
     def transformDataSS(self):
-
         text = ConverText.converTextFormatSQL('IrInventoryReport.sql', self.schemeDB, self.codeStore, self.codeSupplier )
         datas, nameRows = extracData(text)
         listRef = []

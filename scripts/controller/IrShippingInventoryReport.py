@@ -1,4 +1,3 @@
-from components.transformData import fromListToString
 from components.sendMail import sendMailEcxel
 from generator.IrInventoryReportGeneration import InventoryReportSend
 from components.transformData import exportHTML, dateNowPC
@@ -8,8 +7,6 @@ from datetime import datetime
 def sendInventoryReport(): 
     """ Modulo Encargado de Gestionar la lectura del Json Junto con el Envio de los archivos Generados """
     dateTodayNumber = datetime.now().day
-    listDefinition = []
-    listWord = []
 
     if dateTodayNumber == 1 or dateTodayNumber == 15:  #Solo se puede enviar este correo el 1ro y 15vo dia de un mes
 
@@ -19,20 +16,19 @@ def sendInventoryReport():
             dataJSON = extracJSON('supervisors.json')   #Si es 15vo, se escojera json de supervisores
 
         dateToday = dateNowPC()
-        delimiter = 0
         
         for origin in dataJSON:  #Seleccionamos proveedor/supervisor
+            listDefinition = []
+            listWord = []
             title = dataJSON[origin]
             i = 0
 
-            if delimiter == 0:
-                for word, definition in title.items():
-                    listWord.append(word)
-                    listDefinition.append(definition)
+            for word, definition in title.items():
+                listWord.append(word)
+                listDefinition.append(definition)
 
-                listWord = listWord[2:]
-                listDefinition = listDefinition[2:]
-                delimiter += 1
+            listWord = listWord[2:]
+            listDefinition = listDefinition[2:]
             
             for ref in listDefinition:
                 triggerData = InventoryReportSend (schemeDB= ref[2],

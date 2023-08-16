@@ -6,7 +6,7 @@ from datetime import datetime
 
 def sendInventoryReport(): 
     """ Modulo Encargado de Gestionar la lectura del Json Junto con el Envio de los archivos Generados """
-    dateTodayNumber = 1
+    dateTodayNumber = datetime.now().day
 
     if dateTodayNumber == 1 or dateTodayNumber == 15:  #Solo se puede enviar este correo el 1ro y 15vo dia de un mes
 

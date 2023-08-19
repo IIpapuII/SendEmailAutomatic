@@ -4,7 +4,10 @@ SELECT
 	CASE 
 	WHEN T2."WhsCode" IN (006,030) THEN 'CÚCUTA'
 	WHEN T2."WhsCode" = '013' THEN 'ARAUCA'
-             WHEN T2."WhsCode" = '011' THEN 'OCAÑA'
+    WHEN T2."WhsCode" = '011' THEN 'OCAÑA'
+    WHEN T2."WhsCode" = '010' THEN 'CALI'
+    WHEN T2."WhsCode" = '014' THEN 'GIRON'
+    WHEN T2."WhsCode" = '019' THEN 'EJE CAFETERO'
 	ELSE 'ERROR BODEGA'
 	END AS "Sucursal",
 	(IFNULL(T4."BeginStr", '') || substring(T1."DocNum", 4)) as "Número Factura",
@@ -100,6 +103,7 @@ LEFT JOIN
 WHERE
 	T1."DocDate" BETWEEN ADD_DAYS(CURRENT_DATE,-EXTRACT(DAY FROM CURRENT_DATE) + 1) AND CURRENT_DATE
 	AND T2."WhsCode" IN ({1})
+	AND T8."ItmsGrpCod" IN ({2})
 	--AND T1."DocNum" = '10078561'
 
 UNION ALL
@@ -110,7 +114,10 @@ T2."Project" as "Proyecto",
 	CASE 
 	WHEN T2."WhsCode" IN (006,030) THEN 'CÚCUTA'
 	WHEN T2."WhsCode" = '013' THEN 'ARAUCA'
-             WHEN T2."WhsCode" = '011' THEN 'OCAÑA'
+    WHEN T2."WhsCode" = '011' THEN 'OCAÑA'
+    WHEN T2."WhsCode" = '010' THEN 'CALI'
+    WHEN T2."WhsCode" = '014' THEN 'GIRON'
+    WHEN T2."WhsCode" = '019' THEN 'EJE CAFETERO'
 	ELSE 'ERROR BODEGA'
 	END AS "Sucursal",
 	(IFNULL(T4."BeginStr", '') || substring(T1."DocNum", 4)) as "Número Factura",
@@ -230,6 +237,7 @@ LEFT JOIN
 WHERE
 	T1."DocDate" BETWEEN ADD_DAYS(CURRENT_DATE,-EXTRACT(DAY FROM CURRENT_DATE) + 1) AND CURRENT_DATE
 	AND T2."WhsCode" IN ({1})
+	AND T8."ItmsGrpCod" IN ({2})
 	--AND T1."DocNum" = '10078561'
 /*ORDER BY
 	"FechaDocumento"*/

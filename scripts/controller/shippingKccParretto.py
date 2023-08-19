@@ -1,26 +1,46 @@
-from components.sendMail import sendMailEcxel
-from generator.parrettoGeneration import ParrettoSend
+from components.sendMail import sendMailEcxelMultiple
+from generator.KccParrettoGeneration import KccParrettoGranDistSend, KccParrettoGelvezDistSend
 from components.transformData import exportHTML, dateNowFormat
 from components.dataExtract import extracJSON
 
 
-def sendParrettoCurrent():
+def sendKccParretto():
     """ Modulo Encargado de Gestionar la lectura del Json Junto con el Envio de los archivos Generados """
 
-    dataJSON = extracJSON('parreto.json')
+    dataJSON = extracJSON('kccparreto.json')
+
+
     for i in dataJSON:
         print(i)
-        triggerData = ParrettoSend (schemeDB= dataJSON[i]['schemeDB'], wareHouse= dataJSON[i]['WareHouse'])
         
-        triggerMail = sendMailEcxel(
-            dataJSON[i]['sender'],
-            dataJSON[i]['addresse'], 
-            "Sabana de Ventas para Liquidaciones," + dateNowFormat(),
-            exportHTML('massiveParretto.html', date_today = dateNowFormat(), distributor_entity = dataJSON[i]['nameHouse']),
-            'Parretto de Ventas.xlsx',
-            dataJSON[i]['password']
+        if i == "EMAIL":
+            sender= dataJSON[i]['sender']
+            password= dataJSON[i]['password']
+            nameHouse= dataJSON[i]['nameHouse']
+            addresse= dataJSON[i]['addresse']
+        elif str(i).count('Z') > 0:
+            triggerGelvez = KccParrettoGelvezDistSend(   
+                GLschemeDB= dataJSON[i]['GLschemeDB'],
+                GLwareHouse= dataJSON[i]['GLwareHouse'],
+                GLsupplierHouse= dataJSON[i]['GLsupplierHouse']
+                )
+            gelvez = i
+        else:
+            triggerGran = KccParrettoGranDistSend(   
+                GRschemeDB= dataJSON[i]['GRschemeDB'],
+                GRwareHouse= dataJSON[i]['GRwareHouse'],
+                GRsupplierHouse= dataJSON[i]['GRsupplierHouse']
+                )
+            gran = i
+        triggerMail = sendMailEcxelMultiple(
+            sender,
+            addresse,
+            "Sabana de Ventas - Kimberly",
+            exportHTML('kccParretto.html', date_today = dateNowFormat, distributor_entity = nameHouse),
+            ['Sabana de Ventas Kimberly - Gelvez Distribuciones.xlsx','Sabana de Ventas Kimberly - Gran Distribuidor.xlsx'],
+            password
             )
-        triggerData.transformData()
-        print('Se Genero: Sabana de ventas')
-        triggerMail.sendProviderEmail()
-        
+    triggerGelvez.transformGelvez()
+    triggerGran.transformGran()
+    print('Se Genero: Archivo Kimberly ', gelvez," - ",gran)
+    triggerMail.sendProviderEmail()

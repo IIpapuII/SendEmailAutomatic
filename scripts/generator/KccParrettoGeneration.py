@@ -1,10 +1,11 @@
 from components.converTextData import ConverText
 from components.dataExtract import extracData
 
-"""
-Generador de Archivos multiples 
-"""
+
 class KccParrettoGelvezDistSend():
+    """
+    Generador de Archivos multiples para proveedor especifico Caso 1
+    """
 
     def __init__(self, GLschemeDB, GLwareHouse, GLsupplierHouse, GLnameDocument):
         self.GLschemeDB = GLschemeDB
@@ -19,6 +20,9 @@ class KccParrettoGelvezDistSend():
         print("Elemento Guardado.")
 
 class KccParrettoGranDistSend():
+    """
+    Generador de Archivos multiples para proveedor especifico Caso 1
+    """
 
     def __init__(self, GRschemeDB, GRwareHouse, GRsupplierHouse, GRnameDocument):
         self.GRschemeDB = GRschemeDB

@@ -22,24 +22,27 @@ def sendKccParretto():
             triggerGelvez = KccParrettoGelvezDistSend(   
                 GLschemeDB= dataJSON[i]['GLschemeDB'],
                 GLwareHouse= dataJSON[i]['GLwareHouse'],
-                GLsupplierHouse= dataJSON[i]['GLsupplierHouse']
+                GLsupplierHouse= dataJSON[i]['GLsupplierHouse'],
+                GLnameDocument= dataJSON[i]['GLnameDocument']
                 )
             gelvez = i
         else:
             triggerGran = KccParrettoGranDistSend(   
                 GRschemeDB= dataJSON[i]['GRschemeDB'],
                 GRwareHouse= dataJSON[i]['GRwareHouse'],
-                GRsupplierHouse= dataJSON[i]['GRsupplierHouse']
+                GRsupplierHouse= dataJSON[i]['GRsupplierHouse'],
+                GRnameDocument= dataJSON[i]['GRnameDocument']
                 )
             gran = i
-        triggerMail = sendMailEcxelMultiple(
-            sender,
-            addresse,
-            "Sabana de Ventas - Kimberly",
-            exportHTML('kccParretto.html', date_today = dateNowFormat, distributor_entity = nameHouse),
-            ['Sabana de Ventas Kimberly - Gelvez Distribuciones.xlsx','Sabana de Ventas Kimberly - Gran Distribuidor.xlsx'],
-            password
-            )
+
+    triggerMail = sendMailEcxelMultiple(
+        sender,
+        addresse,
+        "Sabana de Ventas - Kimberly",
+        exportHTML('kccParretto.html', date_today = dateNowFormat, distributor_entity = nameHouse),
+        [dataJSON[gelvez]['GLnameDocument'], dataJSON[gran]['GRnameDocument']],
+        password
+        )
     triggerGelvez.transformGelvez()
     triggerGran.transformGran()
     print('Se Genero: Archivo Kimberly ', gelvez," - ",gran)

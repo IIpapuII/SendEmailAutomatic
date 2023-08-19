@@ -1,3 +1,4 @@
+from controller.shippingKccParretto import sendKccParretto
 from controller.shippingControl  import sendInventorySupplier
 from controller.icomeController import sendIcomesJson
 from controller.shippingParretto import sendParrettoCurrent
@@ -23,7 +24,9 @@ if __name__ == "__main__":
         elif sys.argv[1] == 'f':
             ejecuteProjectAccounting()
         elif sys.argv[1] == 'g':
-            sendInventoryReport()  
+            sendInventoryReport()
+        elif sys.argv[1] == 'h':
+            sendKccParretto()
         elif sys.argv[1] == 'test':
             textExtraction()
 

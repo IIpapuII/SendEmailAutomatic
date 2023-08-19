@@ -2,24 +2,33 @@ from components.converTextData import ConverText
 from components.dataExtract import extracData
 
 """
-Modulo Encardo de la conexión a la base y generación del archivo de ecxel 
+Generador de Archivo CUCUTA para KIMBERLY 
 """
+class KccParrettoGelvezDistSend():
 
-class ParrettoSend():
-    """
-    Se encarga de generar el proceso de envio de la sabana de ventas para el proceso de 
-    solicitudes de invercción 
-    """
-    def __init__(self, schemeDB, wareHouse):
-        self.schemeDB = schemeDB
-        self.wareHouse = wareHouse
-    
-    
-    def transformData(self):
-        text = ConverText.converTextFormatSQL('parrettoventas.sql', self.schemeDB, self.wareHouse)
+    def __init__(self, GLschemeDB, GLwareHouse, GLsupplierHouse):
+        self.GLschemeDB = GLschemeDB
+        self.GLwareHouse = GLwareHouse
+        self.GLsupplierHouse = GLsupplierHouse
+   
+    def transformGelvez(self):
+        text = ConverText.converTextFormatSQL('KccParrettoVentas.sql', self.GLschemeDB, self.GLwareHouse, self.GLsupplierHouse)
         datas, nameRows = extracData(text)
-        ConverText.ConverDataXlsx(nameRows,datas,'Parretto de Ventas.xlsx')
+        ConverText.ConverDataXlsx(nameRows,datas,'Sabana de Ventas Kimberly - Gelvez Distribuciones.xlsx')
         print("Elemento Guardado.")
 
+"""
+Generador de Archivo CUCUTA para KIMBERLY 
+"""
+class KccParrettoGranDistSend():
 
+    def __init__(self, GRschemeDB, GRwareHouse, GRsupplierHouse):
+        self.GRschemeDB = GRschemeDB
+        self.GRwareHouse = GRwareHouse
+        self.GRsupplierHouse = GRsupplierHouse
     
+    def transformGran(self):
+        text = ConverText.converTextFormatSQL('KccParrettoVentas.sql', self.GRschemeDB, self.GRwareHouse, self.GRsupplierHouse)
+        datas, nameRows = extracData(text)
+        ConverText.ConverDataXlsx(nameRows,datas,'Sabana de Ventas Kimberly - Gran Distribuidor.xlsx')
+        print("Elemento Guardado.")

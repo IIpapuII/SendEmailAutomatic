@@ -9,20 +9,21 @@ def sendSeriesInvoiceCurrent():
 
     dataJSON = extracJSON('counter.json')
     #Control de Lectura
-    for i in dataJSON:
-        print(i)
-        container = SeriesInvoiceSend(schemeDB= dataJSON[i]['schemeDB'])
+    for title in dataJSON:
+        print(title)
+        container = SeriesInvoiceSend(schemeDB= dataJSON[title]['schemeDB'], table= dataJSON[title]['table'])
         datas, names = container.transformData()
 
         triggerMail = sendMailEcxel(
-            dataJSON[i]['sender'],
-            dataJSON[i]['addresse'],
-            "Serie de Facturas y Fechas de Vencimiento",
+            dataJSON[title]['sender'],
+            dataJSON[title]['sender'], #dataJSON[title]['addresse'],
+            title,
             exportHTML('seriesNotification.html', date_today = dateNowFormat(),
                        header = names, dataSeries = datas, 
-                       distributor_entity = dataJSON[i]['nameHouse']),
+                       distributor_entity = dataJSON[title]['nameHouse'],
+                       text = dataJSON[title]['text']),
             None, 
-            password= dataJSON[i]['password']
+            password= dataJSON[title]['password']
             )
         
         for fields in datas:

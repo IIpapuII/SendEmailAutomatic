@@ -16,7 +16,7 @@ def sendSeriesInvoiceCurrent():
 
         triggerMail = sendMailEcxel(
             dataJSON[title]['sender'],
-            dataJSON[title]['sender'], #dataJSON[title]['addresse'],
+            dataJSON[title]['addresse'],
             title,
             exportHTML('seriesNotification.html', date_today = dateNowFormat(),
                        header = names, dataSeries = datas, 

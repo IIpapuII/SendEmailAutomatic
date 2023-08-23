@@ -3,26 +3,17 @@ from components.dataExtract import extracData
 from model.modelSQL import Structure
 
 """
-Modulo Encardo de la conexión a la base y generación del archivo de ecxel 
+Modulo encardo de la conexión a la base y generación de informacion
 """
-
 
 class SeriesInvoiceSend(Structure):
     """
-    Se encarga de generar el objeto del proveedor junto con el inventario que maneja
+    Se encarga de generar las series de facturas y sus fechas de vencimiento
     """
 
-    def __init__(self, schemeDB, 
-                 initDate=None, 
-                 endDate=None, 
-                 nameCellers=None, 
-                 nameHouse=None, 
-                 codeHouse=None) -> None:
-        super().__init__(schemeDB, initDate, endDate)
-        self.nameCellers = nameCellers
-        self.nameHouse = nameHouse
-        self.codeHouse = codeHouse
-    
+    def __init__(self, schemeDB):
+        self.schemeDB = schemeDB
+
     def transformData(self):
         text = ConverText.converTextFormatSQL('seriesInvoice.sql', self.schemeDB)
         datas, nameRows = extracData(text)

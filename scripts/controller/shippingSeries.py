@@ -5,7 +5,7 @@ from components.dataExtract import extracJSON
 
 
 def sendSeriesInvoiceCurrent():
-    """ Modulo se encarga de generar el vencimiento de las series de documentos  SAP """
+    """ Modulo se encarga de generar el vencimiento de las series de documentos SAP """
 
     dataJSON = extracJSON('counter.json')
     #Control de Lectura

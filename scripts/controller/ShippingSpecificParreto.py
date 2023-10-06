@@ -25,7 +25,9 @@ def sendSpecificParreto():
             dataJSON[i]['sender'],
             dataJSON[i]['addresse'], 
             "Sabana de Ventas " + dateNowFormat(),
-            exportHTML('SpecificParreto.html', date_today = dateNowFormat(), distributor_entity = dataJSON[i]['nameHouse']),
+            exportHTML('SpecificParreto.html', date_today = dateNowFormat(), 
+                       distributor_entity = dataJSON[i]['nameHouse'],
+                       name = i),
             dataJSON[i]['nameDocument'],
             dataJSON[i]['password']
             )

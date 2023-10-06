@@ -6,6 +6,7 @@ from controller.shippingSeries import sendSeriesInvoiceCurrent
 from controller.IrShippingInventoryReport import sendInventoryReport
 from controller.shippingCustomerCollection import sendCustomerCollectionMail
 from controller.controllerProject import ejecuteProjectAccounting
+from controller.ShippingSpecificParreto import sendSpecificParreto
 from controller.test import textExtraction
 import sys
 
@@ -27,6 +28,8 @@ if __name__ == "__main__":
             sendInventoryReport()
         elif sys.argv[1] == 'h':
             sendKccParretto()
+        elif sys.argv[1] == 'i':
+            sendSpecificParreto()
         elif sys.argv[1] == 'test':
             textExtraction()
 

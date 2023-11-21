@@ -44,7 +44,7 @@ def sendLVPreport():
 
     triggerMail = sendMailEcxelMultiple(                    #Adjunta informes y prepara correo
         dataJSON[i]['sender'],
-        dataJSON[i]['addresse'] ,
+        dataJSON[i]['addresse'],
         "Inventario y Ventas de {0} a corte de {1}".format(dataJSON[i]['nameHouse'],dateNowFormat()),
         exportHTML('LVPreport.html', NameHouse = dataJSON[i]['nameHouse'],
                     listWhareHouse = dataJSON[i]['nameCellers']),

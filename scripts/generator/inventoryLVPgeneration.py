@@ -5,14 +5,8 @@ from components.converTextData import ConverText
 from components.dataExtract import extracData, getFilePath
 from model.modelSQL import Structure
 
-"""
-Modulo Encardo de la conexión a la base y generación del archivo de ecxel 
-"""
-
 class inventoryLVPsend(Structure):
-    """
-    Se encarga de generar el objeto del provedor junto con el iventario que maneja
-    """
+    """ Modulo encargado de la generacion de archivos en base a variable establecidas"""
 
     def __init__(self, schemeDB, 
                  wareHouse, nameInventory,
@@ -29,6 +23,7 @@ class inventoryLVPsend(Structure):
         self.nameInventory = nameInventory
     
     def transformData(self):
+        #Procesa informacion de una consulta SQL y la transforma a Excel
         text = ConverText.converTextFormatSQL('LVPinventory.sql',self.codeHouse, self.wareHouse, self.schemeDB)
         data , description = extracData(text)
         ConverText.ConverDataXlsx(description, data, self.nameInventory)

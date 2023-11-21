@@ -7,18 +7,18 @@ from components.dataExtract import extracJSON
 def sendCLGTparretto():
     """ Modulo Encargado de Gestionar la lectura del Json Junto con el Envio de los archivos Generados """
 
-    dataJSON = extracJSON('CLGTparretto.json')
+    dataJSON = extracJSON('CLGTparretto.json')              #Lectura de Json
 
     for i in dataJSON:
         print(i)
         
-        if i == "EMAIL":
+        if i == "EMAIL":                        #Establece variables para envio de correo
             sender= dataJSON[i]['sender']
             password= dataJSON[i]['password']
             nameHouse= dataJSON[i]['nameHouse']
             addresse= dataJSON[i]['addresse']
         elif str(i).count('Z') > 0:
-            triggerGelvez = CLGTparrettoGLVsend(   
+            triggerGelvez = CLGTparrettoGLVsend(                #Establece variables para creacion de sabana de ventas
                 GLschemeDB= dataJSON[i]['GLschemeDB'],
                 GLwareHouse= dataJSON[i]['GLwareHouse'],
                 GLsupplierHouse= dataJSON[i]['GLsupplierHouse'],
@@ -26,7 +26,7 @@ def sendCLGTparretto():
                 )
             gelvez = i
     
-    triggerMail = sendMailEcxel(
+    triggerMail = sendMailEcxel(                #Adjunta informes y prepara correo
         sender,
         addresse,
         "Sabana de Ventas - Colgate",
@@ -34,6 +34,6 @@ def sendCLGTparretto():
         dataJSON[gelvez]['GLnameDocument'],
         password
         )
-    triggerGelvez.transformGelvez()
+    triggerGelvez.transformGelvez()                 #Ejecuta creacion de sabana de ventas
     print('Se Genero: Archivo Colgate ', gelvez)
-    triggerMail.sendProviderEmail()
+    triggerMail.sendProviderEmail()                 #Envia correo

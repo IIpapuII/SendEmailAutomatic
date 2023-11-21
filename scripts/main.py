@@ -7,6 +7,8 @@ from controller.IrShippingInventoryReport import sendInventoryReport
 from controller.shippingCustomerCollection import sendCustomerCollectionMail
 from controller.controllerProject import ejecuteProjectAccounting
 from controller.ShippingSpecificParreto import sendSpecificParreto
+from controller.shippingLVPreports import sendLVPreport
+from controller.shippingCLGTparretto import sendCLGTparretto
 from controller.test import textExtraction
 import sys
 
@@ -30,6 +32,10 @@ if __name__ == "__main__":
             sendKccParretto() # Inventario de kimberly
         elif sys.argv[1] == 'i':
             sendSpecificParreto() # Por si Camilo Osorio lo requiere
+        elif sys.argv[1] == 'j':
+            sendLVPreport() # Sabana e Inventario Levapan
+        elif sys.argv[1] == 'k':
+            sendCLGTparretto() # Sabana de Ventas de Colgate
         elif sys.argv[1] == 'test':
             textExtraction() # No tocar
 

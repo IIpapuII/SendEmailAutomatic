@@ -1,0 +1,146 @@
+
+<!DOCTYPE html PUBLIC>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office"></html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta name="x-apple-disable-message-reformatting">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="telephone=no" name="format-detection">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=K2D:wght@400;700&display=swap" rel="stylesheet">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #title {
+            width: auto;
+            font-family: 'K2D', sans-serif;
+            font-size: large;                   /*Estilo del titulo*/
+        }
+
+        .text {
+            font-family: 'K2D', sans-serif;
+            font-size: larger;                   /*Estilo del texto*/
+            text-align: justify;
+        }
+
+        #message_important {
+            font-weight: 700;
+            font-size: larger;
+            text-align: center;
+        }
+
+        #container_box_message {
+            display: flex;
+            margin: auto;
+            width: 800px;
+        }
+
+        span {
+            font-weight: bold;          /*Resaltar texto*/
+        }
+        
+        #box {
+            border: 3px #7B0F10 solid;
+            height: auto;
+            width: 600px;           /*Estilo del borde*/
+            border-radius: 10px;
+            padding: 10px 10px 10px 10px;
+            display: flex;
+            margin: auto;
+
+            background-image: url('https://qivblu.stripocdn.email/content/guids/CABINET_bf53c089fa1d7edca832c660953b1053aaf8c792fb9e25e69404d65675690d1f/images/svg_kLB.png');
+            background-repeat: no-repeat;
+            background-position: left bottom;
+            background-size: contain;
+            padding-bottom: 190px;
+        }
+
+        #logo {
+            position: relative;
+            width: 200px;
+            padding: 0;
+            align-self: right;
+        }
+
+        #name {
+            font-size: larger;
+            font-style: italic;
+            font-weight: bolder;
+            margin-top: 8px;
+            margin-bottom: 20px;
+            line-height: 1px;
+            color: black;
+        }
+
+        #phone_number {
+            margin-bottom: 20px;
+            font-style: italic;
+            line-height: 1px;
+            color: black;
+        }
+
+        #plan {
+            margin-bottom: 20px;
+            font-style: italic;
+            line-height: 1px;
+            color: black;
+        }
+
+        #email {
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-style: italic;
+            line-height: 1px;
+            color: black;
+        }
+
+        #place {
+            font-style: italic;
+            line-height: 1px;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <table>
+            <tr>
+                <td id="title">
+                    <h2>Inventario y Sabana de Ventas <br> {{NameHouse}}</h2>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="text">Cordial saludo,</p>
+                    <p class="text">{{listWhareHouse}}</p> <!--Contenido de la carta-->
+                    <p class="text">Cordialmente,</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a target="_blank">
+                        <img id="logo" src="https://demo.stripocdn.email/content/guids/79874f80-95ea-46a1-a92e-3192ba93e1ec/images/logo.png" alt style="display: block;" width="200">
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="text" id="name">Jerson Eduardo Calder&oacute;n</p>
+                    <p class="text" id="plan">Lider de Compras</p>
+                    <p class="text" id="phone_number">(+57) 310-3309799</p>
+                    <p class="text" id="email">compras1@c.gelvezdistribuciones.com</p>
+                    <p class="text" id="place">Cúcuta - Norte de Santander</p>
+                </td>
+            </tr>
+            
+        </table>
+    </div>
+</body>
+
+</html>

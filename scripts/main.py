@@ -7,31 +7,37 @@ from controller.IrShippingInventoryReport import sendInventoryReport
 from controller.shippingCustomerCollection import sendCustomerCollectionMail
 from controller.controllerProject import ejecuteProjectAccounting
 from controller.ShippingSpecificParreto import sendSpecificParreto
+from controller.shippingLVPreports import sendLVPreport
+from controller.shippingCLGTparretto import sendCLGTparretto
 from controller.test import textExtraction
 import sys
 
 if __name__ == "__main__":
     if len(sys.argv)> 1:
         if sys.argv[1] == 'a':
-            sendInventorySupplier()
+            sendInventorySupplier() # Inventarios a proveedores
         elif sys.argv[1] == 'b':
-            sendIcomesJson()
+            sendIcomesJson() # Sabanas de ventas
         elif sys.argv[1] == 'c':
-            sendParrettoCurrent()
+            sendParrettoCurrent() # Sabanas de ventas actuales (mes)
         elif sys.argv[1] == 'd':
-            sendSeriesInvoiceCurrent()
+            sendSeriesInvoiceCurrent() # Series de facturas y fechas de vencimiento
         elif sys.argv[1] == 'e':
-            sendCustomerCollectionMail()
+            sendCustomerCollectionMail() # Cobro a clientes con mora
         elif sys.argv[1] == 'f':
-            ejecuteProjectAccounting()
+            ejecuteProjectAccounting() # Desconocido
         elif sys.argv[1] == 'g':
-            sendInventoryReport()
+            sendInventoryReport() # Inventario - Productos de baja rotacion
         elif sys.argv[1] == 'h':
-            sendKccParretto()
+            sendKccParretto() # Inventario de kimberly
         elif sys.argv[1] == 'i':
-            sendSpecificParreto()
+            sendSpecificParreto() # Por si Camilo Osorio lo requiere
+        elif sys.argv[1] == 'j':
+            sendLVPreport() # Sabana e Inventario Levapan
+        elif sys.argv[1] == 'k':
+            sendCLGTparretto() # Sabana de Ventas de Colgate
         elif sys.argv[1] == 'test':
-            textExtraction()
+            textExtraction() # No tocar
 
     else:
         print('Error')

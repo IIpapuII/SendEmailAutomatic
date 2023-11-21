@@ -1,6 +1,6 @@
 from generator.projectAccountingGenerate import ProjectAccountingEjecute
 from components.dataExtract import extracJSON
-from components.transformData import dateNowHana, dateFirstDay
+from components.transformData import dateNowHana
 
 
 def ejecuteProjectAccounting():

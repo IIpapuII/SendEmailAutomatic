@@ -1,6 +1,5 @@
 from components.dataExtract import extracData
 from components.converTextData import ConverText
-from components.transformData import dataFusion, exportExcel
 from model.modelSQL import Structure
 
 class SendSeries (Structure):

@@ -1,7 +1,6 @@
 from model.conectDB import conect
 from components.converTextData import ConverText
 from components.dataExtract import extracData
-from datetime import datetime
 
 """
 Modulo Encardo de la conexión a la base y generación del archivo de ecxel 

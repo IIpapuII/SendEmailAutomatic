@@ -1,4 +1,3 @@
-
 import pandas as pd
 import openpyxl
 from components.converTextData import ConverText

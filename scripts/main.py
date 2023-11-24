@@ -9,6 +9,7 @@ from controller.controllerProject import ejecuteProjectAccounting
 from controller.ShippingSpecificParreto import sendSpecificParreto
 from controller.shippingLVPreports import sendLVPreport
 from controller.shippingCLGTparretto import sendCLGTparretto
+from controller.shippingSendMessageClients import sendMessageClients
 from controller.test import textExtraction
 import sys
 
@@ -38,6 +39,8 @@ if __name__ == "__main__":
             sendCLGTparretto() # Sabana de Ventas de Colgate
         elif sys.argv[1] == 'test':
             textExtraction() # No tocar
+        elif sys.argv[1] == 'message':
+            sendMessageClients() #Envio manual de mensajes
 
     else:
         print('Error')

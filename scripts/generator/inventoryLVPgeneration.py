@@ -1,8 +1,5 @@
-
-import pandas as pd
-import openpyxl
 from components.converTextData import ConverText
-from components.dataExtract import extracData, getFilePath
+from components.dataExtract import extracData
 from model.modelSQL import Structure
 
 class inventoryLVPsend(Structure):

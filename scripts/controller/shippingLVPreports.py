@@ -5,7 +5,6 @@ from components.transformData import exportHTML, dateNowHana, dateNowFormat, dat
 from components.dataExtract import extracJSON
 from components.dataExtract import getFilePath
 import pandas as pd
-import openpyxl
 
 
 def sendLVPreport():

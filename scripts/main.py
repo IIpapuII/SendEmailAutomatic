@@ -30,7 +30,7 @@ if __name__ == "__main__":
         elif sys.argv[1] == 'g':
             sendInventoryReport() # Inventario - Productos de baja rotacion
         elif sys.argv[1] == 'h':
-            sendKccParretto() # Inventario de kimberly
+            sendKccParretto() # Sabanas de Ventas de kimberly
         elif sys.argv[1] == 'i':
             sendSpecificParreto() # Por si Camilo Osorio lo requiere
         elif sys.argv[1] == 'j':

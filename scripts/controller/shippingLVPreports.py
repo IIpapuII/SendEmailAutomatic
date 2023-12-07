@@ -5,13 +5,27 @@ from components.transformData import exportHTML, dateNowHana, dateNowFormat, dat
 from components.dataExtract import extracJSON
 from components.dataExtract import getFilePath
 import pandas as pd
-import openpyxl
-
+from datetime import date, timedelta
+import calendar
 
 def sendLVPreport():
     """ Modulo Encargado de Gestionar la lectura del Json Junto con el Envio de los archivos Generados """
 
+day_int = date.today().day
+day_str = calendar.day_name[date.today().weekday()]
+endDate = ''
+
+if day_int == 1 or day_str == 'Friday':
     dataJSON = extracJSON('LVPdata.json')           #Lectura de Json
+
+    if day_int == 1:        #Si es el primer dia del mes; arrojara cierre del mes anterior
+        currentMonth = date.today()                         #Toma la fecha actual
+        currentMonth.replace(day = 1)                       #Transforma al primer dia del mes actual
+        wrongEndDate = currentMonth - timedelta(days = 1)        #Transforma al ultimo dia del mes anterior
+        endDate = wrongEndDate.strftime("%d/%m/%Y")             #Formatea fecha de fin
+    
+    elif day_str == 'Saturday':       #Si es viernes; arrojara lo que lleva del mes actual
+        endDate = date.today().strftime("%d/%m/%Y")       #Entrega del ultima dia del mes actual formateado
 
     for i in dataJSON:
         print(i)
@@ -25,8 +39,6 @@ def sendLVPreport():
         triggerSales = parretoLVPsend(              #Establece variables para creacion de sabana de ventas
             schemeDB= dataJSON[i]['ShemeDB'],
             wareHouse= dataJSON[i]['codeHouse'],
-            initDate= dateFirstDay(),
-            endDate= dateNowHana(),
             wareCellers= dataJSON[i]['codeCellers'],
             nameParreto = dataJSON[i]['nameParreto']
         )
@@ -45,7 +57,7 @@ def sendLVPreport():
     triggerMail = sendMailEcxelMultiple(                    #Adjunta informes y prepara correo
         dataJSON[i]['sender'],
         dataJSON[i]['addresse'],
-        "Inventario y Ventas de {0} a corte de {1}".format(dataJSON[i]['nameHouse'],dateNowFormat()),
+        "Inventario y Ventas de {0} a corte de {1}".format(dataJSON[i]['nameHouse'],endDate),
         exportHTML('LVPreport.html', NameHouse = dataJSON[i]['nameHouse'],
                     listWhareHouse = dataJSON[i]['nameCellers']),
         ['Sabana de Ventas - {0}.xlsx'.format(dataJSON[i]['nameHouse']), 'Inventario - {0}.xlsx'.format(dataJSON[i]['nameHouse'])],
@@ -53,3 +65,6 @@ def sendLVPreport():
     )
     print('Se Genero: ', triggerData.nameHouse)
     triggerMail.sendProviderEmail() #Envia correo
+
+else:
+    print('Aun no es el tiempo indicado')

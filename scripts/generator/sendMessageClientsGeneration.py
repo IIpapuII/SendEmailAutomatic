@@ -7,7 +7,7 @@ from model.modelSQL import Structure
 Modulo Encardo de la conexión a la base y generación del archivo de ecxel 
 """
 
-class CustomerCollectionSend(Structure):
+class SendMessageClients(Structure):
     """
     Se encarga de generar el objeto del proveedor junto con el inventario que maneja
     """
@@ -24,16 +24,13 @@ class CustomerCollectionSend(Structure):
         return fecha_diferencia.days
 
     def transformData(self, ref_array): 
-        formatted_ref_array = str(ref_array).replace("[","").replace("]","")
-        text = ConverText.converTextFormatSQL('customerCollection.sql', self.schemeDB, formatted_ref_array)
+        text = ConverText.converTextFormatSQL('SendMessageClients.sql', self.schemeDB, ref_array)
         datas, nameRows = extracData(text)
-        row = datas[len(datas)-1]
 
-        nameClient = str(row[1])
-        ccCLient = str(row[2])
-        coin = int(row[4])
-        endDateCheck = str(row[5])
-        wait = self.date(endDateCheck)
-        email = str(row[6])
+        row = datas[0]
 
-        return nameClient, ccCLient, endDateCheck, wait, coin, email
+        cn = str(row[0])
+        name = str(row[1])
+        email = str(row[2])
+
+        return cn, name, email

@@ -67,7 +67,7 @@ LEFT JOIN
 WHERE
 	T3."ItmsGrpCod" in ({0})
 	AND T6."WhsCode"  in ({1})
-	AND T2A."DocDate" <= TO_VARCHAR(CURRENT_DATE,'YYYYMMDD')
+	AND T2A."DocDate" <= ('{3}')
 GROUP BY
 	T1."ItemCode",
 	T1."CodeBars",

@@ -1,7 +1,6 @@
-
 from components.dataExtract import extracData, getFilePath
 from components.converTextData import ConverText
-from components.transformData import dataFusion, exportExcel
+from components.transformData import dataFusion
 from model.modelSQL import Structure
 
 

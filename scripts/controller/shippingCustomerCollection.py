@@ -1,15 +1,14 @@
 from components.sendMail import sendMailEcxel
 from generator.customerCollectionGeneration import CustomerCollectionSend
+from components.dataExtract import extracJSON
 from components.transformData import exportHTML, dateNowFormat,convertNumberToText,formatNumberMoney
 import pandas as pd
-import json
 import os
 
 def sendCustomerCollectionMail():
     """ Modulo Encargado de Gestionar la lectura del Json Junto con el Envio de los archivos Generados """
 
-    dataJSON = open(os.path.join(os.path.dirname(os.path.abspath('config')),'scripts/config/client.json'), "r")
-    dataJSON = json.loads(str(dataJSON.read()))
+    dataJSON = extracJSON('client.json')
 
     key = 0
 
@@ -44,7 +43,7 @@ def sendCustomerCollectionMail():
                 triggerMail = sendMailEcxel(
                     dataJSON[i]['sender'], 
                     email,
-                    "Notificación de Cobro".format(dataJSON[i]['nameHouse'],dateNowFormat()),
+                    "Notificación de Cobro",
                     exportHTML('customerCollection.html', date_today = dateNowFormat(), 
                             client_name = nameClient, 
                             client_cc = ccCLient, 

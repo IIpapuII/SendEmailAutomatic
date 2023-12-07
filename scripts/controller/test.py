@@ -1,5 +1,3 @@
-from datetime import datetime
-from components.transformData import dateNowFormat
 from components.dataExtract import extracJSON
 from components.dataExtract import extracJSON
 

@@ -17,7 +17,7 @@ def sendCLGTparretto():
             password= dataJSON[i]['password']
             nameHouse= dataJSON[i]['nameHouse']
             addresse= dataJSON[i]['addresse']
-        elif str(i).count('Z') > 0:
+        else:
             triggerGelvez = CLGTparrettoGLVsend(                #Establece variables para creacion de sabana de ventas
                 GLschemeDB= dataJSON[i]['GLschemeDB'],
                 GLwareHouse= dataJSON[i]['GLwareHouse'],

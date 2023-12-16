@@ -14,7 +14,7 @@ def sendLVPreport():
 day_int = date.today().day
 day_str = calendar.day_name[date.today().weekday()]
 
-if day_int == 1 or day_str == 'Friday':
+if day_int == 1 or day_str == 'Saturday':
     dataJSON = extracJSON('LVPdata.json')           #Lectura de Json
 
     if day_int == 1:        #Si es el primer dia del mes; arrojara cierre del mes anterior

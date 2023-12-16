@@ -17,8 +17,6 @@ class parretoLVPsend(Structure):
         #Procesa informacion de una consulta SQL y la transforma a Excel
         day_int = date.today().day
         day_str = calendar.day_name[date.today().weekday()]
-        endDate = ''
-        initDate = ''
 
         if day_int == 1:        #Si es el primer dia del mes; arrojara cierre del mes anterior
             currentMonth = date.today()                         #Toma la fecha actual
@@ -29,7 +27,7 @@ class parretoLVPsend(Structure):
             endDate.strftime("%Y%m%d")             #Formatea fecha de fin
             initDate.strftime("%Y%m%d")            #Formatea fecha de inicio
         
-        elif day_str == 'Friday':          #Si es viernes; arrojara lo que lleva del mes actual
+        elif day_str == 'Saturday':          #Si es viernes; arrojara lo que lleva del mes actual
             endDate = date.today().strftime("%Y%m%d")                       #Entrega del ultima dia del mes actual formateado
             initDate = date.today().replace(day = 1).strftime("%Y%m%d")     #Entrega del primer dia del mes actual formateado
 

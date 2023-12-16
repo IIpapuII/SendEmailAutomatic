@@ -23,7 +23,6 @@ class inventoryLVPsend(Structure):
         #Procesa informacion de una consulta SQL y la transforma a Excel
         day_int = date.today().day
         day_str = calendar.day_name[date.today().weekday()]
-        endDate = ''
 
         if day_int == 1:        #Si es el primer dia del mes; arrojara cierre del mes anterior
             currentMonth = date.today()                         #Toma la fecha actual
@@ -31,7 +30,7 @@ class inventoryLVPsend(Structure):
             wrongEndDate = currentMonth - timedelta(days = 1)        #Transforma al ultimo dia del mes anterior
             endDate = wrongEndDate.strftime("%Y%m%d")             #Formatea fecha de fin
         
-        elif day_str == 'Friday':       #Si es viernes; arrojara lo que lleva del mes actual
+        elif day_str == 'Saturday':       #Si es viernes; arrojara lo que lleva del mes actual
             endDate = date.today().strftime("%Y%m%d")       #Entrega del ultima dia del mes actual formateado
 
         text = ConverText.converTextFormatSQL('LVPinventory.sql',self.codeHouse, self.wareHouse, self.schemeDB, endDate)

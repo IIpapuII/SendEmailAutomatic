@@ -23,7 +23,7 @@ if day_int == 1 or day_str == 'Saturday':
         wrongEndDate = currentMonth - timedelta(days = 1)        #Transforma al ultimo dia del mes anterior
         endDate = wrongEndDate.strftime("%d/%m/%Y")             #Formatea fecha de fin
     
-    elif day_str == 'Saturday':       #Si es viernes; arrojara lo que lleva del mes actual
+    elif day_str == 'Friday':       #Si es viernes; arrojara lo que lleva del mes actual
         endDate = date.today().strftime("%d/%m/%Y")       #Entrega del ultima dia del mes actual formateado
 
     for i in dataJSON:

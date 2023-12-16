@@ -1,7 +1,7 @@
 from components.sendMail import sendMailEcxel
 from generator.sendMessageClientsGeneration import SendMessageClients
 from components.dataExtract import extracJSON
-from components.transformData import exportHTML, dateNowFormat
+from components.transformData import exportHTML
 import pandas as pd
 import os
 from components.sendMail import sendMailEcxel

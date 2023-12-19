@@ -18,7 +18,7 @@ if __name__ == "__main__":
         if sys.argv[1] == 'a':
             sendInventorySupplier() # Inventarios a proveedores
         elif sys.argv[1] == 'b':
-            sendIcomesJson() # Sabanas de ventas
+            sendIcomesJson() # Entrada de Mercancia
         elif sys.argv[1] == 'c':
             sendParrettoCurrent() # Sabanas de ventas actuales (mes)
         elif sys.argv[1] == 'd':
